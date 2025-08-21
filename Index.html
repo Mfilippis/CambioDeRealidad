@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TuNuevaNarrativa — Contá tu historia</title>
+  <meta name="description" content="TuNuevaNarrativa: una comunidad para contar y reescribir tu historia. Inspirá y dejate inspirar." />
+  <meta property="og:title" content="TuNuevaNarrativa — Contá tu historia" />
+  <meta property="og:description" content="Una comunidad para contar y reescribir tu historia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="portada.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Cambiá estos colores a tu gusto */
+      --bg: #0f1220;            /* Fondo principal (muy oscuro para resaltar) */
+      --panel: #151935;        /* Paneles/cards */
+      --text: #eaf0ff;         /* Texto principal */
+      --muted: #a7b1d6;        /* Texto secundario */
+      --primary: #7c5cff;      /* Llamativo (violeta) */
+      --accent: #00d1b2;       /* Acento (turquesa) */
+      --danger: #ff6b6b;       /* Errores */
+      --radius-xl: 20px;
+      --radius-md: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 10% 5%, #1a1f47 0%, var(--bg) 40%) no-repeat;
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Layout */
+    .container{ width: min(1120px, 92%); margin-inline: auto; }
+
+    /* Header */
+    header{
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: linear-gradient(180deg, rgba(15,18,32,.85), rgba(15,18,32,.45));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{ display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand{ display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .4px; }
+    .logo{
+      width: 36px; height: 36px; border-radius: 10px;
+      background: conic-gradient(from 210deg, var(--accent), var(--primary), #8b5cf6);
+      box-shadow: 0 6px 18px rgba(124,92,255,.45);
+    }
+    nav a{
+      color: var(--muted); text-decoration: none; margin-left: 20px; font-weight: 500;
+    }
+    nav a:hover{ color: var(--text); }
+    .btn{ display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; font-weight: 700; }
+    .btn-primary{
+      background: linear-gradient(90deg, var(--primary), #9c7cff);
+      padding: 10px 16px; border-radius: 999px; color: white; box-shadow: 0 10px 22px rgba(124,92,255,.35);
+    }
+    .btn-outline{
+      padding: 9px 16px; border-radius: 999px; color: var(--text);
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Hero */
+    .hero{ position: relative; padding: 72px 0 42px; overflow: clip; }
+    .hero-wrap{ display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; }
+    .hero h1{ font-size: clamp(32px, 5vw, 56px); line-height: 1.1; margin: 0 0 10px; }
+    .hero p{ color: var(--muted); margin: 0 0 24px; font-size: clamp(16px, 2vw, 18px); }
+    .hero-cta{ display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(21,25,53,.6), rgba(21,25,53,.3));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius-xl);
+      padding: 16px; box-shadow: var(--shadow);
+    }
+    .hero-img{
+      position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-xl); overflow: hidden; isolation: isolate;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .hero-img img{ width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.05); }
+    .hero-overlay{
+      position: absolute; inset: 0; background: radial-gradient(60% 60% at 70% 20%, rgba(124,92,255,.28), transparent 60%),
+                                      linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.6));
+    }
+    .ticker{
+      position: absolute; inset-inline: -10%; bottom: 14px; display: flex; gap: 24px; padding: 8px 0; overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
+    }
+    .tag{
+      white-space: nowrap; padding: 8px 12px; border-radius: 999px; font-size: 14px; color: #0e1020;
+      background: #e7edff; border: 1px solid rgba(13,18,45,.12); opacity: .95;
+    }
+
+    /* Sección: Quiénes somos */
+    section{ padding: 54px 0; }
+    .section-title{ font-size: clamp(22px, 3.4vw, 34px); margin: 0 0 8px; }
+    .section-sub{ color: var(--muted); margin: 0 0 22px; }
+    .about{ display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+    .about .panel{ background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius-xl); padding: 20px; box-shadow: var(--shadow); }
+
+    /* Sección: Historias */
+    .grid{ display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
+    .card{ grid-column: span 4; background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow); }
+    .card .media{ position: relative; aspect-ratio: 4/5; overflow: hidden; }
+    .card img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .quote{ position: absolute; inset: auto 12px 12px 12px; background: rgba(10,12,22,.6); color: var(--text); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.08); }
+    .chip{ display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); color: var(--muted); }
+
+    /* CTA */
+    .cta{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items:center; }
+    form{ display: grid; gap: 12px; }
+    label{ font-size: 14px; color: var(--muted); }
+    input, textarea{ background: rgba(255,255,255,.03); color: var(--text); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 12px 14px; font: inherit; }
+    textarea{ min-height: 130px; resize: vertical; }
+    .hint{ font-size: 12px; color: var(--muted); margin-top: -6px; }
+    .msg-ok{ display:none; padding: 14px; background: rgba(0,209,178,.15); border: 1px solid rgba(0,209,178,.35); color: #c7fff4; border-radius: 12px; }
+    .msg-err{ display:none; padding: 14px; background: rgba(255,107,107,.1); border: 1px solid rgba(255,107,107,.35); color: #ffd3d3; border-radius: 12px; }
+
+    /* Footer */
+    footer{ padding: 30px 0 60px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06); }
+
+    /* Responsivo */
+    @media (max-width: 980px){ .hero-wrap, .about, .cta{ grid-template-columns: 1fr; } }
+    @media (max-width: 860px){ .card{ grid-column: span 6; } }
+    @media (max-width: 540px){ .card{ grid-column: span 12; } nav{ display:none; } }
+      /* === Ajuste de contraste para la sección “Contá tu historia” === */
+    #conta-tu-historia{ 
+      background: linear-gradient(180deg, rgba(10,12,22,.96), rgba(10,12,22,.98));
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      scroll-margin-top: 80px; /* evita que el header tape el título al hacer clic en el ancla */
+    }
+    #conta-tu-historia, 
+    #conta-tu-historia h2, 
+    #conta-tu-historia p, 
+    #conta-tu-historia label{ color: var(--text); }
+    #conta-tu-historia .section-sub{ color: #d6ddffcc; }
+    #conta-tu-historia input, 
+    #conta-tu-historia textarea{ 
+      background: rgba(255,255,255,.06); 
+      border-color: rgba(255,255,255,.24); 
+      color: var(--text); 
+    }
+    #conta-tu-historia input::placeholder, 
+    #conta-tu-historia textarea::placeholder{ color: #d9e1ff99; }
+    #conta-tu-historia .panel{ background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.12); }
+    #conta-tu-historia .btn-outline{ border-color: rgba(255,255,255,.35); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>TuNuevaNarrativa</span>
+      </div>
+      <nav aria-label="Principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#quienes-somos">Quiénes somos</a>
+        <a href="#historias">Historias</a>
+        <a href="#conta-tu-historia">Contá tu historia</a>
+      </nav>
+      <a class="btn btn-outline" href="#conta-tu-historia" aria-label="Ir al formulario">Empezá hoy</a>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <div class="hero-card">
+          <h1>Tu nueva narrativa empieza <span style="background: linear-gradient(90deg,var(--accent), var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent;">acá</span>.</h1>
+          <p>Una comunidad para contar y reescribir tu historia. Inspirada por prácticas de conciencia, elegimos palabras que nos expanden: de <em>“tengo que”</em> a <strong>“elijo”</strong>.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#conta-tu-historia">Contá tu historia</a>
+            <a class="btn btn-outline" href="#historias">Ver historias</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-img" aria-label="Imagen de portada">
+        <!-- Reemplazá portada.png por tu imagen -->
+        <img src="portada.png" alt="Fondo inspirador para TuNuevaNarrativa" />
+        <div class="hero-overlay"></div>
+        <div class="ticker" aria-hidden="true">
+          <span class="tag">Elijo crear</span>
+          <span class="tag">Presente consciente</span>
+          <span class="tag">Abundancia</span>
+          <span class="tag">Gratitud</span>
+          <span class="tag">Constancia</span>
+          <span class="tag">Nuevas creencias</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="quienes-somos">
+    <div class="container about">
+      <div>
+        <h2 class="section-title">Quiénes somos</h2>
+        <p class="section-sub">Creamos un espacio simple para expresar y transformar la narrativa personal.</p>
+        <div class="panel">
+          <p>
+            TuNuevaNarrativa nace de una práctica cotidiana: observar los pensamientos y elegir palabras que abren posibilidades. Inspirada en lecturas como <em>El poder del ahora</em> y métodos de reprogramación, esta página quiere facilitar que cada persona comparta su proceso — por ejemplo, cambiar <em>tengo que</em> por <strong>elijo</strong>, soltar peleas imaginarias y habitar el presente.
+          </p>
+          <p>
+            Acá podés leer, compartir y celebrar historias reales de cambio interno. Porque lo que repetimos, creamos.
+          </p>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="chip">🎯 Propósito</p>
+        <h3 style="margin-top:6px">Contar, integrar y expandir</h3>
+        <p>Visibilizar micro‑cambios del día a día que, sostenidos en el tiempo, reescriben nuestra identidad.</p>
+        <ul>
+          <li>Lenguaje que potencia: de obligación a elección.</li>
+          <li>Prácticas simples: respiración, gratitud, presencia.</li>
+          <li>Comunidad: leernos y sentirnos acompañados.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="historias">
+    <div class="container">
+      <h2 class="section-title">Historias de la comunidad</h2>
+      <p class="section-sub">Tres disparadores visuales para inspirarte. Reemplazá las imágenes por las tuyas y editá las frases.</p>
+      <div class="grid">
+        <!-- Card 1 -->
+        <article class="card" aria-label="Historia 1">
+          <div class="media">
+            <img src="historia-1.png" alt="Persona mirando un amanecer" />
+            <div class="quote">«Elijo crear mi realidad»</div>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="card" aria-label="Historia 2">
+          <div class="media">
+            <img src="historia-2.png" alt="Cuaderno de gratitud" />
+            <div class="quote">«Soy constante y abundante»</div>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="card" aria-label="Historia 3">
+          <div class="media">
+            <img src="historia-3.png" alt="Sendero en la naturaleza" />
+            <div class="quote">«Elijo pensamientos que me expanden»</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="conta-tu-historia">
+    <div class="container cta">
+      <div>
+        <h2 class="section-title">Contá tu historia</h2>
+        <p class="section-sub">Dejá unas líneas sobre un cambio que estés practicando. Este formulario es local (no envía datos a ningún servidor).</p>
+        <form id="storyForm" novalidate>
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="tu@correo.com" />
+            <div class="hint">Solo para que podamos responderte (opcional).</div>
+          </div>
+          <div>
+            <label for="historia">Tu historia</label>
+            <textarea id="historia" name="historia" placeholder="Contá en 3–5 líneas qué estás cambiando y cómo lo practicás..."></textarea>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <button class="btn btn-outline" type="reset">Limpiar</button>
+          </div>
+          <div id="msgOk" class="msg-ok" role="status">¡Gracias por compartir! Tu historia quedó guardada en esta página (solo en tu navegador).</div>
+          <div id="msgErr" class="msg-err" role="alert">Por favor escribí al menos 30 caracteres para tu historia.</div>
+        </form>
+      </div>
+      <div class="panel">
+        <p class="chip">💡 Tip rápido</p>
+        <h3 style="margin-top:6px">Cómo reemplazar imágenes y frases</h3>
+        <ol>
+          <li>Guardá tus imágenes en la misma carpeta: <code>portada.png</code>, <code>historia-1.png</code>, <code>historia-2.png</code>, <code>historia-3.png</code>.</li>
+          <li>Para cambiar las frases, editá el texto dentro de <code>&lt;div class="quote"&gt;...&lt;/div&gt;</code>.</li>
+          <li>Colores: modificá las variables CSS al inicio (por ejemplo <code>--primary</code> o <code>--accent</code>).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+      <span>© <span id="year"></span> TuNuevaNarrativa</span>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="chip" href="#inicio">⬆️ Volver arriba</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico en el footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Formulario local: valida, persiste en localStorage y muestra mensaje
+    const form = document.getElementById('storyForm');
+    const ok = document.getElementById('msgOk');
+    const err = document.getElementById('msgErr');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      err.style.display = 'none';
+      ok.style.display = 'none';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const texto = (data.historia || '').trim();
+      if(texto.length < 30){
+        err.style.display = 'block';
+        return;
+      }
+      const historias = JSON.parse(localStorage.getItem('tnn_historias') || '[]');
+      historias.push({ ...data, fecha: new Date().toISOString() });
+      localStorage.setItem('tnn_historias', JSON.stringify(historias));
+      ok.style.display = 'block';
+      form.reset();
+    });
+
+    // Accesibilidad: reduce animaciones si usuario prefiere
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce){
+      // Animación simple del ticker de etiquetas
+      const ticker = document.querySelector('.ticker');
+      if(ticker){
+        let x = 0;
+        const step = () => {
+          x -= 0.5; // velocidad
+          ticker.style.transform = `translateX(${x}px)`;
+          if(Math.abs(x) > ticker.scrollWidth / 2){ x = 0; }
+          requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    }
+  </script>
+</body>
+</html>
