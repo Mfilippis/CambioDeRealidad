@@ -1,0 +1,38 @@
+<section id="conta-tu-historia">
+  <div class="container cta" style="display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center;">
+    <div>
+      <h2 class="section-title">Contá tu historia</h2>
+      <p class="section-sub">Dejá unas líneas sobre un cambio que estés practicando. Este formulario es local (no envía datos a ningún servidor).</p>
+      <form id="storyForm" novalidate>
+        <div>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="tu@correo.com" />
+          <div class="hint">Solo para que podamos responderte (opcional).</div>
+        </div>
+        <div>
+          <label for="historia">Tu historia</label>
+          <textarea id="historia" name="historia" placeholder="Contá en 3–5 líneas qué estás cambiando y cómo lo practicás..."></textarea>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button class="btn btn-primary" type="submit">Enviar</button>
+          <button class="btn btn-outline" type="reset">Limpiar</button>
+        </div>
+        <div id="msgOk" class="msg-ok" role="status">¡Gracias por compartir! Tu historia quedó guardada en esta página (solo en tu navegador).</div>
+        <div id="msgErr" class="msg-err" role="alert">Por favor escribí al menos 30 caracteres para tu historia.</div>
+      </form>
+    </div>
+    <div class="panel">
+      <p class="chip">💡 Tip rápido</p>
+      <h3 style="margin-top:6px">Cómo reemplazar imágenes y frases</h3>
+      <ol>
+        <li>Guardá tus imágenes en la carpeta raíz: <code>portada.png</code>, <code>historia-1.png</code>, <code>historia-2.png</code>, <code>historia-3.png</code>.</li>
+        <li>Para cambiar las frases, editá el texto dentro de cada cita.</li>
+        <li>Colores: modificá las variables CSS al inicio del archivo <code>assets/styles.css</code>.</li>
+      </ol>
+    </div>
+  </div>
+</section>
