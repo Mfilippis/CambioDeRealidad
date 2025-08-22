@@ -1,4 +1,4 @@
-// ==== TuNuevaNarrativa – router simple por hash y comportamientos ====
+// ==== TuNuevaNarrativa – router y comportamiento ====
 const routes = {
   'inicio': 'partials/inicio.html',
   'quienes-somos': 'partials/quienes-somos.html',
@@ -36,21 +36,53 @@ function initStoryForm(){
   form.dataset.bound = '1';
   const ok = document.getElementById('msgOk');
   const err = document.getElementById('msgErr');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if(err) err.style.display = 'none';
     if(ok) ok.style.display = 'none';
+
     const data = Object.fromEntries(new FormData(form).entries());
     const texto = (data.historia || '').trim();
     if(texto.length < 30){
-      if(err) err.style.display = 'block';
+      if(err){ err.textContent = 'Por favor escribí al menos 30 caracteres para tu historia.'; err.style.display = 'block'; }
       return;
     }
+
+    // Siempre guardamos local como backup
     const historias = JSON.parse(localStorage.getItem('tnn_historias') || '[]');
     historias.push({ ...data, fecha: new Date().toISOString() });
     localStorage.setItem('tnn_historias', JSON.stringify(historias));
-    if(ok) ok.style.display = 'block';
-    form.reset();
+
+    const endpoint = form.dataset.endpoint; // Formspree endpoint si está configurado
+    if(endpoint){
+      try{
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: data.nombre || '',
+            email: data.email || '',
+            historia: data.historia || '',
+            _subject: 'Nueva historia desde TuNuevaNarrativa'
+          })
+        });
+        if(res.ok){
+          if(ok){ ok.textContent = '¡Gracias! Tu historia fue enviada. Te responderé por email.'; ok.style.display = 'block'; }
+          form.reset();
+          return;
+        }else{
+          const j = await res.json().catch(()=>({}));
+          throw new Error(j.error || 'No se pudo enviar el formulario.');
+        }
+      }catch(e){
+        if(err){ err.textContent = 'No pude enviar por email ahora, pero tu historia quedó guardada localmente. Probá nuevamente en unos minutos.'; err.style.display = 'block'; }
+        return;
+      }
+    }else{
+      // Si no hay endpoint configurado, sólo confirmamos local
+      if(ok){ ok.textContent = '¡Gracias por compartir! Tu historia quedó guardada (local).'; ok.style.display = 'block'; }
+      form.reset();
+    }
   });
 }
 
@@ -67,10 +99,8 @@ async function render(){
   }
   setActive(view);
   window.scrollTo(0,0);
-  // init features depending on view
   if(view === 'inicio') initTicker();
   if(view === 'conta-tu-historia') initStoryForm();
-  // year
   const y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
 }
 

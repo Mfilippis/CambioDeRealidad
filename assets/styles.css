@@ -93,6 +93,12 @@ textarea{ min-height:130px; resize:vertical; }
 .msg-ok{ display:none; padding:14px; background: rgba(0,209,178,.15); border:1px solid rgba(0,209,178,.35); color:#c7fff4; border-radius:12px; }
 .msg-err{ display:none; padding:14px; background: rgba(255,107,107,.1); border:1px solid rgba(255,107,107,.35); color:#ffd3d3; border-radius:12px; }
 
+/* Right image card */
+.illus{ background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius-xl); box-shadow:var(--shadow); padding: 12px; }
+.illus img{ width:100%; height:auto; display:block; border-radius: 14px; border:1px solid rgba(255,255,255,.08); }
+.illus h3{ margin:12px 10px 0; font-size: 20px; }
+.illus p{ margin:6px 10px 12px; color: var(--muted); font-size: 14px; }
+
 /* Footer */
 footer{ padding:30px 0 60px; color:var(--muted); border-top:1px solid rgba(255,255,255,.06); }
 footer .container{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
