@@ -2,9 +2,9 @@
   <div class="container" style="display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:start;">
     <div>
       <h2 class="section-title">Contá tu historia</h2>
-      <p class="section-sub">Dejá unas líneas sobre un cambio que estés practicando. Este formulario es local <em>y</em> puede enviarme un email si configurás el endpoint.</p>
+      <p class="section-sub">Dejá unas líneas sobre un cambio que estés practicando. El formulario guarda localmente <em>y</em> me envía por email.</p>
 
-      <!-- Reemplazá data-endpoint con tu URL de Formspree (p. ej. https://formspree.io/f/abcdwxyz) -->
+      <!-- Endpoint de Formspree integrado -->
       <form id="storyForm" data-endpoint="https://formspree.io/f/xnnzebyn" novalidate>
         <div>
           <label for="nombre">Nombre</label>
@@ -25,19 +25,20 @@
           <button class="btn btn-outline" type="reset">Limpiar</button>
         </div>
 
-        <div id="msgOk" class="msg-ok" role="status" aria-live="polite">¡Gracias por compartir! Tu historia quedó guardada (y si configuraste el email, también fue enviada).</div>
+        <div id="msgOk" class="msg-ok" role="status" aria-live="polite">¡Gracias! Tu historia fue enviada y guardada.</div>
         <div id="msgErr" class="msg-err" role="alert" aria-live="assertive">Por favor escribí al menos 30 caracteres.</div>
       </form>
     </div>
 
-    <aside class="illus">
-      <img src="assets/form-illustration.svg" alt="Ilustración amigable: escribir tu historia" />
-      <h3>Cómo recibir las historias en tu mail</h3>
-      <p>
-        1) Creá una forma gratis en Formspree, usando tu email <strong>milagroscamiscia@gmail.com</strong>.<br/>
-        2) Copiá el endpoint (se ve como <code>https://formspree.io/f/xxxxx</code>).<br/>
-        3) Pegalo en el atributo <code>data-endpoint</code> del formulario.
-      </p>
+    <aside class="friendly">
+      <img class="art" src="assets/friendly-card.svg" alt="Ilustración amigable: corazones y estrellas junto a un formulario" loading="lazy" />
+      <h3>Gracias por compartir 💜</h3>
+      <p>Tu historia puede inspirar a alguien hoy. Podés usar tu nombre o un seudónimo.</p>
+      <ul>
+        <li>Escribí 3–5 líneas concretas ✍️</li>
+        <li>¿Qué estás practicando? ¿Cómo lo sostenés?</li>
+        <li>Si dejás tu email, podré responderte.</li>
+      </ul>
     </aside>
   </div>
 </section>

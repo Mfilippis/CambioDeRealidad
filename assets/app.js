@@ -48,12 +48,12 @@ function initStoryForm(){
       return;
     }
 
-    // Siempre guardamos local como backup
+    // Guardado local como respaldo
     const historias = JSON.parse(localStorage.getItem('tnn_historias') || '[]');
     historias.push({ ...data, fecha: new Date().toISOString() });
     localStorage.setItem('tnn_historias', JSON.stringify(historias));
 
-    const endpoint = form.dataset.endpoint; // Formspree endpoint si está configurado
+    const endpoint = form.dataset.endpoint; // Formspree endpoint
     if(endpoint){
       try{
         const res = await fetch(endpoint, {
@@ -67,7 +67,7 @@ function initStoryForm(){
           })
         });
         if(res.ok){
-          if(ok){ ok.textContent = '¡Gracias! Tu historia fue enviada. Te responderé por email.'; ok.style.display = 'block'; }
+          if(ok){ ok.textContent = '¡Gracias! Tu historia fue enviada y guardada.'; ok.style.display = 'block'; }
           form.reset();
           return;
         }else{
@@ -79,7 +79,6 @@ function initStoryForm(){
         return;
       }
     }else{
-      // Si no hay endpoint configurado, sólo confirmamos local
       if(ok){ ok.textContent = '¡Gracias por compartir! Tu historia quedó guardada (local).'; ok.style.display = 'block'; }
       form.reset();
     }
