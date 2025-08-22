@@ -163,6 +163,24 @@
     .linkpill:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
     .linkpill small{ color: var(--muted); }
     @media (max-width: 860px){ .link-list li{ grid-column: span 12; } }
+      /* === Vista por secciones (tipo páginas) === */
+    body[data-view] main.hero,
+    body[data-view] #quienes-somos,
+    body[data-view] #historias,
+    body[data-view] #recursos,
+    body[data-view] #conta-tu-historia{ display:none; }
+
+    body[data-view="inicio"] main.hero,
+    body[data-view="quienes-somos"] #quienes-somos,
+    body[data-view="historias"] #historias,
+    body[data-view="recursos"] #recursos,
+    body[data-view="conta-tu-historia"] #conta-tu-historia{ display:block; }
+
+    /* Altura mínima para que cada vista se sienta como página completa */
+    [data-view] main.hero, [data-view] section{ min-height: calc(100vh - 72px); }
+
+    /* Nav activo */
+    .nav a.active{ color: var(--text); border-bottom: 2px solid var(--primary); padding-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -389,6 +407,22 @@
         requestAnimationFrame(step);
       }
     }
+      // ====== Router simple por hash (#inicio, #historias, etc.) ======
+    function setViewFromHash(){
+      const view = (location.hash || '#inicio').replace('#','');
+      document.body.setAttribute('data-view', view);
+      // Marcar link activo en la navegación
+      document.querySelectorAll('header nav a').forEach(a=>{
+        const isActive = a.getAttribute('href') === '#' + view;
+        a.classList.toggle('active', isActive);
+        if(isActive){ a.setAttribute('aria-current','page'); } else { a.removeAttribute('aria-current'); }
+      });
+      // Evitar scroll: que se "sienta" como cambio de página
+      window.scrollTo(0,0);
+    }
+    window.addEventListener('hashchange', setViewFromHash);
+    // Estado inicial
+    setViewFromHash();
   </script>
 </body>
 </html>
