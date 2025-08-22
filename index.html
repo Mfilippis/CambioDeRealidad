@@ -155,6 +155,14 @@
     #conta-tu-historia textarea::placeholder{ color: #d9e1ff99; }
     #conta-tu-historia .panel{ background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.12); }
     #conta-tu-historia .btn-outline{ border-color: rgba(255,255,255,.35); }
+      /* === Recursos (links de YouTube) === */
+    .links .panel{ background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius-xl); padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
+    .link-list{ list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+    .link-list li{ grid-column: span 6; }
+    .linkpill{ display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); }
+    .linkpill:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
+    .linkpill small{ color: var(--muted); }
+    @media (max-width: 860px){ .link-list li{ grid-column: span 12; } }
   </style>
 </head>
 <body>
@@ -168,6 +176,7 @@
         <a href="#inicio">Inicio</a>
         <a href="#quienes-somos">Quiénes somos</a>
         <a href="#historias">Historias</a>
+        <a href="#recursos">Recursos</a>
         <a href="#conta-tu-historia">Contá tu historia</a>
       </nav>
       <a class="btn btn-outline" href="#conta-tu-historia" aria-label="Ir al formulario">Empezá hoy</a>
@@ -296,6 +305,35 @@
           <li>Colores: modificá las variables CSS al inicio (por ejemplo <code>--primary</code> o <code>--accent</code>).</li>
         </ol>
       </div>
+    </div>
+  </section>
+
+  <section id="recursos" class="links">
+    <div class="container">
+      <h2 class="section-title">Recursos recomendados</h2>
+      <p class="section-sub">Meditaciones y charlas de YouTube que recomiendo.</p>
+
+      <div class="panel">
+        <p class="chip">🧘‍♀️ Meditaciones</p>
+        <ul class="link-list">
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=lTdlWM8lzZg&list=PLB1JrTapQhL8-DPMrUcSrmSCqt2jO1Cjj&index=15">▶️ Meditación 1 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=AouMQBke4Aw&list=PLB1JrTapQhL8-DPMrUcSrmSCqt2jO1Cjj&index=13">▶️ Meditación 2 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://youtu.be/xhlCcT1_9BQ?si=6oO9xF6wAfc8e1LX">▶️ Meditación 3 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://youtu.be/xhlCcT1_9BQ?si=J9cQTCEhYVWlGVq8">▶️ Meditación 4 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://youtu.be/SMe5FyKlOOI?si=_tLVRgClRO0kPVEH">▶️ Meditación 5 <small>(YouTube)</small></a></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <p class="chip">🎤 Charlas</p>
+        <ul class="link-list">
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=S_vZcj4X2Mk">▶️ Charla 1 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=NgSBtlkiylI">▶️ Charla 2 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=Xi1t-gd5OHQ">▶️ Charla 3 <small>(YouTube)</small></a></li>
+          <li><a class="linkpill" target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=Z-VudBFS450">▶️ Charla 4 <small>(YouTube)</small></a></li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
