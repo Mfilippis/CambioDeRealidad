@@ -36,5 +36,5 @@
     <circle cx="600" cy="362" r="3"/>
   </g>
   <text x="60" y="470" fill="#eaf0ff" font-family="Poppins, Arial, sans-serif" font-size="22" font-weight="600">Gracias por compartir</text>
-  <text x="60" y="495" fill="#a7b1d6" font-family="Poppins, Arial, sans-serif" font-size="14">Escribí 3–5 líneas. Podés usar un seudónimo.</text>
+  <text x="60" y="495" fill="#a7b1d6" font-family="Poppins, Arial, sans-serif" font-size="14">Contanos tu experiencia.</text>
 </svg>

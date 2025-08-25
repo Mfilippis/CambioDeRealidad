@@ -44,7 +44,7 @@ function initStoryForm(){
     const data = Object.fromEntries(new FormData(form).entries());
     const texto = (data.historia || '').trim();
     if(texto.length < 30){
-      if(err){ err.textContent = 'Por favor escribí al menos 30 caracteres para tu historia.'; err.style.display = 'block'; }
+      if(err){ err.textContent = 'Por favor escribí al menos 30 caracteres.'; err.style.display = 'block'; }
       return;
     }
 
