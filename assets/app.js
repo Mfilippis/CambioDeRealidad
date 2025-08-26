@@ -154,3 +154,4 @@ async function render(){
 // Inicialización
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', render);
+
