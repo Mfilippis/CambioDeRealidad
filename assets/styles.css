@@ -117,3 +117,6 @@ footer .container{ display:flex; justify-content:space-between; align-items:cent
 
 @media (max-width:860px){ .book-card{ grid-column:span 6; } }
 @media (max-width:540px){ .book-card{ grid-column:span 12; } }
+
+.is-hidden{ display:none !important; }
+.section-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
