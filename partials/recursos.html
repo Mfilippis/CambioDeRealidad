@@ -6,9 +6,8 @@
     <!-- 🧘‍♀️ Meditaciones -->
     <div class="panel" style="background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-xl); padding:20px; box-shadow:var(--shadow); margin-bottom:16px;">
       <p class="chip">🧘‍♀️ Meditaciones</p>
-      <div class="yt-grid">
-
-        <!-- Las 3 que ya estaban -->
+      <div class="yt-grid" data-limit="6">
+        <!-- 3 originales -->
         <article class="yt-card" data-yt="https://www.youtube.com/watch?v=lTdlWM8lzZg">
           <a href="https://www.youtube.com/watch?v=lTdlWM8lzZg" target="_blank" rel="noopener">
             <img class="yt-thumb" src="https://img.youtube.com/vi/lTdlWM8lzZg/hqdefault.jpg" alt="Miniatura YouTube" loading="lazy">
@@ -30,7 +29,7 @@
           <div class="yt-body"><p class="yt-title">Cargando…</p><a class="yt-open" href="https://youtu.be/SMe5FyKlOOI" target="_blank" rel="noopener">Abrir</a></div>
         </article>
 
-        <!-- ✅ Nuevas 6 meditaciones -->
+        <!-- 6 nuevas -->
         <article class="yt-card" data-yt="https://www.youtube.com/watch?v=xAzAFx2SquY">
           <a href="https://www.youtube.com/watch?v=xAzAFx2SquY" target="_blank" rel="noopener">
             <img class="yt-thumb" src="https://img.youtube.com/vi/xAzAFx2SquY/hqdefault.jpg" alt="Miniatura YouTube" loading="lazy">
@@ -72,15 +71,19 @@
           </a>
           <div class="yt-body"><p class="yt-title">Cargando…</p><a class="yt-open" href="https://www.youtube.com/watch?v=ebtxhdckoXA" target="_blank" rel="noopener">Abrir</a></div>
         </article>
+      </div>
 
+      <div class="section-actions">
+        <button class="btn btn-outline btn-more" type="button">Ver más</button>
+        <a class="btn btn-primary" href="#/conta-tu-historia">Recomendar una meditación</a>
       </div>
     </div>
 
     <!-- 🎤 Charlas -->
     <div class="panel" style="background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-xl); padding:20px; box-shadow:var(--shadow);">
       <p class="chip">🎤 Charlas</p>
-      <div class="yt-grid">
-        <!-- Las 4 que ya estaban -->
+      <div class="yt-grid" data-limit="6">
+        <!-- 4 originales -->
         <article class="yt-card" data-yt="https://www.youtube.com/watch?v=S_vZcj4X2Mk">
           <a href="https://www.youtube.com/watch?v=S_vZcj4X2Mk" target="_blank" rel="noopener">
             <img class="yt-thumb" src="https://img.youtube.com/vi/S_vZcj4X2Mk/hqdefault.jpg" alt="Charla" loading="lazy">
@@ -109,7 +112,7 @@
           <div class="yt-body"><p class="yt-title">Cargando…</p><a class="yt-open" href="https://www.youtube.com/watch?v=Z-VudBFS450" target="_blank" rel="noopener">Abrir</a></div>
         </article>
 
-        <!-- ✅ Nuevas charlas -->
+        <!-- 2 nuevas -->
         <article class="yt-card" data-yt="https://www.youtube.com/watch?v=zKmfjeir2W0">
           <a href="https://www.youtube.com/watch?v=zKmfjeir2W0" target="_blank" rel="noopener">
             <img class="yt-thumb" src="https://img.youtube.com/vi/zKmfjeir2W0/hqdefault.jpg" alt="Charla" loading="lazy">
@@ -124,76 +127,58 @@
           <div class="yt-body"><p class="yt-title">Cargando…</p><a class="yt-open" href="https://www.youtube.com/watch?v=ns1mH8eXrrU" target="_blank" rel="noopener">Abrir</a></div>
         </article>
       </div>
+
+      <div class="section-actions">
+        <button class="btn btn-outline btn-more" type="button">Ver más</button>
+        <a class="btn btn-primary" href="#/conta-tu-historia">Recomendar una charla</a>
+      </div>
     </div>
 
-    <!-- 📚 Libros recomendados -->
-<div class="panel" style="background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-xl); padding:20px; box-shadow:var(--shadow); margin-top:18px;">
-  <p class="chip">📚 Libros</p>
-  <div class="book-grid">
-
-    <article class="book-card">
-      <div class="book-thumb">
-        <img src="assets/books/el-poder-del-ahora.jpg?v=1" alt="El poder del ahora" loading="lazy">
-      </div>
-      <div class="book-body"><h4 class="book-title">El poder del ahora</h4></div>
-    </article>
-
-    <article class="book-card">
-      <div class="book-thumb">
-        <img src="assets/books/deja-de-ser-tu.jpg?v=1" alt="Deja de Ser Tú" loading="lazy">
-      </div>
-      <div class="book-body"><h4 class="book-title">Deja de Ser Tú</h4></div>
-    </article>
-
-    <article class="book-card">
-      <div class="book-thumb">
-        <!-- 👇 acá uso .png porque así está en tu repo -->
-        <img src="assets/books/sobrenatural.png?v=1" alt="Sobrenatural" loading="lazy">
-      </div>
-      <div class="book-body"><h4 class="book-title">Sobrenatural</h4></div>
-    </article>
-
-    <article class="book-card">
-      <div class="book-thumb">
-        <img src="assets/books/una-mente-millonaria.jpg?v=1" alt="Una mente millonaria" loading="lazy">
-      </div>
-      <div class="book-body"><h4 class="book-title">Una mente millonaria</h4></div>
-    </article>
-
-    <article class="book-card">
-      <div class="book-thumb">
-        <img src="assets/books/desbloquea-tu-proximo-nivel.jpg?v=1" alt="Desbloquea tu próximo nivel" loading="lazy">
-      </div>
-      <div class="book-body"><h4 class="book-title">Desbloquea tu próximo nivel</h4></div>
-    </article>
-
-  </div>
-</div>
+    <!-- 📚 Libros -->
+    <div class="panel" style="background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-xl); padding:20px; box-shadow:var(--shadow); margin-top:18px;">
+      <p class="chip">📚 Libros</p>
+      <div class="book-grid" data-limit="6">
+        <article class="book-card">
+          <div class="book-thumb">
+            <img src="assets/books/el-poder-del-ahora.jpg?v=1" alt="El poder del ahora" loading="lazy">
+          </div>
+          <div class="book-body"><h4 class="book-title">El poder del ahora</h4></div>
+        </article>
 
         <article class="book-card">
           <div class="book-thumb">
-            <img src="assets/books/sobrenatural.jpg" alt="Sobrenatural" loading="lazy" onerror="this.style.display='none'">
+            <img src="assets/books/deja-de-ser-tu.jpg?v=1" alt="Deja de Ser Tú" loading="lazy">
+          </div>
+          <div class="book-body"><h4 class="book-title">Deja de Ser Tú</h4></div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-thumb">
+            <img src="assets/books/sobrenatural.png?v=1" alt="Sobrenatural" loading="lazy">
           </div>
           <div class="book-body"><h4 class="book-title">Sobrenatural</h4></div>
         </article>
 
         <article class="book-card">
           <div class="book-thumb">
-            <img src="assets/books/una-mente-millonaria.jpg" alt="Una mente millonaria" loading="lazy" onerror="this.style.display='none'">
+            <img src="assets/books/una-mente-millonaria.jpg?v=1" alt="Una mente millonaria" loading="lazy">
           </div>
           <div class="book-body"><h4 class="book-title">Una mente millonaria</h4></div>
         </article>
 
         <article class="book-card">
           <div class="book-thumb">
-            <img src="assets/books/desbloquea-tu-proximo-nivel.jpg" alt="Desbloquea tu próximo nivel" loading="lazy" onerror="this.style.display='none'">
+            <img src="assets/books/desbloquea-tu-proximo-nivel.jpg?v=1" alt="Desbloquea tu próximo nivel" loading="lazy">
           </div>
           <div class="book-body"><h4 class="book-title">Desbloquea tu próximo nivel</h4></div>
         </article>
+      </div>
 
+      <div class="section-actions">
+        <button class="btn btn-outline btn-more" type="button">Ver más</button>
+        <a class="btn btn-primary" href="#/conta-tu-historia">Recomendar un libro</a>
       </div>
     </div>
 
   </div>
 </section>
-
