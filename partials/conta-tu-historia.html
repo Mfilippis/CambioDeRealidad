@@ -5,30 +5,47 @@
       <p class="section-sub">Dejá unas líneas sobre un cambio que estés practicando. El formulario guarda localmente <em>y</em> me envía por email.</p>
 
       <!-- Endpoint de Formspree integrado -->
-      <form id="storyForm" data-endpoint="https://formspree.io/f/xnnzebyn" novalidate>
-        <div>
-          <label for="nombre">Nombre</label>
-          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" />
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="tu@correo.com" />
-          <div class="hint">Solo para poder responderte (opcional).</div>
-        </div>
-        <div>
-          <label for="historia">Tu experiencia</label>
-          <textarea id="historia" name="historia" placeholder="Contanos tu experiencia..." required></textarea>
-        </div>
+<form id="storyForm" data-endpoint="https://formspree.io/f/xnnzebyn" novalidate>
+  <div>
+    <label for="nombre">Nombre</label>
+    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" />
+  </div>
 
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-          <button class="btn btn-primary" type="submit">Enviar</button>
-          <button class="btn btn-outline" type="reset">Limpiar</button>
-        </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="tu@correo.com" />
+    <div class="hint">Solo para poder responderte (opcional).</div>
+  </div>
 
-        <div id="msgOk" class="msg-ok" role="status" aria-live="polite">¡Gracias! Tu historia fue enviada y guardada.</div>
-        <div id="msgErr" class="msg-err" role="alert" aria-live="assertive">Por favor escribí al menos 30 caracteres.</div>
-      </form>
-    </div>
+  <div>
+    <label for="tipo">¿Qué querés compartir?</label>
+    <select id="tipo" name="tipo">
+      <option>Historia</option>
+      <option>Recomendación: meditación</option>
+      <option>Recomendación: charla</option>
+      <option>Recomendación: libro</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="link">Link recomendado (opcional)</label>
+    <input id="link" name="link" type="url" placeholder="Pega el enlace de YouTube o del libro" />
+  </div>
+
+  <div>
+    <label for="historia">Tu experiencia o explicación</label>
+    <textarea id="historia" name="historia" placeholder="Contanos tu experiencia o por qué lo recomendás…" required></textarea>
+  </div>
+
+  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <button class="btn btn-outline" type="reset">Limpiar</button>
+  </div>
+
+  <div id="msgOk" class="msg-ok" role="status" aria-live="polite">¡Gracias! Tu envío fue recibido.</div>
+  <div id="msgErr" class="msg-err" role="alert" aria-live="assertive">Por favor escribí al menos 30 caracteres.</div>
+</form>
+
 
     <aside class="friendly">
       <img class="art" src="assets/friendly-card.svg" alt="Ilustración amigable: corazones y estrellas junto a un formulario" loading="lazy" />
