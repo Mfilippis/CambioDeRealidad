@@ -1,5 +1,4 @@
 // ==== TuNuevaNarrativa – assets/app.js ====
-// Router muy simple que carga parciales HTML según el hash de la URL.
 
 const routes = {
   'inicio': 'partials/inicio.html',
@@ -9,7 +8,6 @@ const routes = {
   'conta-tu-historia': 'partials/conta-tu-historia.html'
 };
 
-// Marca el link activo en la barra de navegación
 function setActive(view){
   document.querySelectorAll('header nav a').forEach(a => {
     const active = a.getAttribute('href') === '#/' + view;
@@ -18,7 +16,6 @@ function setActive(view){
   });
 }
 
-// Animación suave del ticker del hero (respeta reduce motion)
 function initTicker(){
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce) return;
@@ -34,10 +31,7 @@ function initTicker(){
   requestAnimationFrame(step);
 }
 
-// Manejo del formulario de "Contá tu historia"
-// - Validación mínima
-// - Guardado local (localStorage) como respaldo
-// - Envío a Formspree si existe data-endpoint en el <form>
+// --- Formulario (ahora permite historias o recomendaciones) ---
 function initStoryForm(){
   const form = document.getElementById('storyForm');
   if(!form || form.dataset.bound) return;
@@ -58,14 +52,14 @@ function initStoryForm(){
       return;
     }
 
-    // 1) Guardado local como backup
+    // backup local
     try{
       const historias = JSON.parse(localStorage.getItem('tnn_historias') || '[]');
       historias.push({ ...data, fecha: new Date().toISOString() });
       localStorage.setItem('tnn_historias', JSON.stringify(historias));
-    }catch(_){ /* sin drama si falla */ }
+    }catch(_){}
 
-    // 2) Envío a Formspree (si hay endpoint)
+    // Formspree
     const endpoint = form.dataset.endpoint;
     if(endpoint){
       try{
@@ -75,12 +69,14 @@ function initStoryForm(){
           body: JSON.stringify({
             nombre: data.nombre || '',
             email: data.email || '',
+            tipo: data.tipo || 'Historia',
+            link: data.link || '',
             historia: data.historia || '',
-            _subject: 'Nueva historia desde TuNuevaNarrativa'
+            _subject: 'Nuevo envío (Historia o Recomendación) — TuNuevaNarrativa'
           })
         });
         if(res.ok){
-          if(ok){ ok.textContent = '¡Gracias! Tu historia fue enviada y guardada.'; ok.style.display = 'block'; }
+          if(ok){ ok.textContent = '¡Gracias! Lo recibí por email y quedó guardado.'; ok.style.display = 'block'; }
           form.reset();
           return;
         }else{
@@ -88,19 +84,17 @@ function initStoryForm(){
           throw new Error(j.error || 'No se pudo enviar el formulario.');
         }
       }catch(e){
-        if(err){ err.textContent = 'No pude enviar por email ahora, pero tu historia quedó guardada localmente. Probá nuevamente en unos minutos.'; err.style.display = 'block'; }
+        if(err){ err.textContent = 'No pude enviar por email ahora, pero quedó guardado localmente. Probá de nuevo en unos minutos.'; err.style.display = 'block'; }
         return;
       }
     }else{
-      if(ok){ ok.textContent = '¡Gracias por compartir! Tu historia quedó guardada (local).'; ok.style.display = 'block'; }
+      if(ok){ ok.textContent = '¡Gracias por compartir!'; ok.style.display = 'block'; }
       form.reset();
     }
   });
 }
 
-// === Completa títulos con oEmbed de YouTube (sin API key) ===
-// Busca tarjetas .yt-card con atributo data-yt="URL" y reemplaza el texto
-// del elemento .yt-title con el título real devuelto por oEmbed.
+// --- Títulos reales de YouTube vía oEmbed ---
 async function initYouTubeTitles(){
   const cards = document.querySelectorAll('.yt-card[data-yt]');
   if(!cards.length) return;
@@ -109,24 +103,56 @@ async function initYouTubeTitles(){
     const url = card.getAttribute('data-yt');
     const titleEl = card.querySelector('.yt-title');
     if(!url || !titleEl) continue;
-
     try {
-      // Endpoint público de oEmbed (CORS habilitado)
       const res = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`);
       if (!res.ok) throw new Error('oembed error');
       const data = await res.json();
       titleEl.textContent = data.title || 'Ver en YouTube';
-      // Si quisieras usar el thumbnail de oEmbed en vez del de img.youtube.com:
-      // const img = card.querySelector('.yt-thumb');
-      // if (img && data.thumbnail_url) img.src = data.thumbnail_url;
     } catch (_e) {
-      // Fallback elegante
       titleEl.textContent = 'Ver en YouTube';
     }
   }
 }
 
-// Carga la vista en #app según el hash (#/vista)
+// --- Mostrar solo N y expandir con "Ver más" ---
+function initCollapsers(){
+  // para cada grid con data-limit
+  document.querySelectorAll('[data-limit]').forEach(box=>{
+    const limit = parseInt(box.dataset.limit || '6', 10);
+    const items = Array.from(box.children);
+    if(items.length <= limit) return;
+
+    items.slice(limit).forEach(el => el.classList.add('is-hidden'));
+
+    // botón "Ver más" asociado (lo busco cerca)
+    let btn = box.parentElement.querySelector('.btn-more');
+    if(!btn){
+      btn = document.createElement('button');
+      btn.className = 'btn btn-outline btn-more';
+      btn.type = 'button';
+      btn.textContent = 'Ver más';
+      const holder = document.createElement('div');
+      holder.className = 'section-actions';
+      holder.appendChild(btn);
+      box.parentElement.appendChild(holder);
+    }
+    btn.style.display = 'inline-flex';
+
+    let expanded = false;
+    btn.addEventListener('click', ()=>{
+      expanded = !expanded;
+      if(expanded){
+        items.slice(limit).forEach(el => el.classList.remove('is-hidden'));
+        btn.textContent = 'Ver menos';
+      }else{
+        items.slice(limit).forEach(el => el.classList.add('is-hidden'));
+        btn.textContent = 'Ver más';
+        window.scrollBy({ top: -40, behavior: 'smooth' });
+      }
+    });
+  });
+}
+
 async function render(){
   let view = (location.hash || '#/inicio').replace('#/','');
   if(!routes[view]) view = 'inicio';
@@ -145,13 +171,13 @@ async function render(){
 
   if(view === 'inicio') initTicker();
   if(view === 'conta-tu-historia') initStoryForm();
-  if(view === 'recursos') initYouTubeTitles();
+  if(view === 'recursos'){ initYouTubeTitles(); initCollapsers(); }
 
   const y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 }
 
-// Inicialización
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', render);
+
 
