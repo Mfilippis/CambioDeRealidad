@@ -3,55 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TuNuevaNarrativa — Contá tu historia</title>
-  <meta name="description" content="TuNuevaNarrativa: una comunidad para contar y reescribir tu historia." />
-  <meta property="og:title" content="TuNuevaNarrativa — Contá tu historia" />
-  <meta property="og:description" content="Una comunidad para contar y reescribir tu historia." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="portada.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <title>TuNuevaNarrativa</title>
+
+  <!-- Tu CSS principal (dejá el tuyo) -->
+  <link rel="stylesheet" href="assets/styles.css" />
+  <!-- NUEVO: CSS chico para el menú móvil -->
+  <link rel="stylesheet" href="assets/nav-mobile.css" />
 </head>
 <body>
   <header>
-  <div class="container nav">
-    <div class="brand">
-      <img class="brand-logo" src="assets/logo.png" alt="Tu Nueva Narrativa logo" />
-      <a href="#/inicio" style="text-decoration:none; color:var(--text); font-weight:700;">TuNuevaNarrativa</a>
+    <div class="container nav">
+      <div class="brand">
+        <img class="brand-logo" src="assets/logo.png" alt="Tu Nueva Narrativa" />
+        <a href="#/inicio" style="text-decoration:none;color:var(--text);font-weight:700">TuNuevaNarrativa</a>
+      </div>
+
+      <!-- Botón hamburguesa (móvil) -->
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">☰</button>
+
+      <!-- Menú -->
+      <nav id="site-nav" aria-label="Principal">
+        <a href="#/inicio">Inicio</a>
+        <a href="#/quienes-somos">Quiénes somos</a>
+        <a href="#/historias">Historias</a>
+        <a href="#/recursos">Recursos</a>
+        <a class="btn btn-outline" href="#/conta-tu-historia">Contá tu historia</a>
+      </nav>
     </div>
+  </header>
 
-    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">☰</button>
-
-    <nav id="site-nav" aria-label="Principal">
-      <a href="#/inicio">Inicio</a>
-      <a href="#/quienes-somos">Quiénes somos</a>
-      <a href="#/historias">Historias</a>
-      <a href="#/recursos">Recursos</a>
-      <a class="btn btn-outline" href="#/conta-tu-historia" aria-label="Ir al formulario">Contá tu historia</a>
-    </nav>
-  </div>
-</header>
-
-  <main id="app" role="main">
-    <!-- El contenido de cada sección se carga aquí con JS -->
-    <noscript>
-      <section class="container">
-        <p>Necesitás habilitar JavaScript para navegar las secciones.</p>
-      </section>
-    </noscript>
-  </main>
+  <main id="app" class="app"></main>
 
   <footer>
     <div class="container">
-      <span>© <span id="year"></span> TuNuevaNarrativa</span>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <a class="chip" href="#/inicio">⬆️ Volver al inicio</a>
-      </div>
+      <p>© <span id="year"></span> TuNuevaNarrativa</p>
     </div>
   </footer>
 
   <script src="assets/app.js"></script>
 </body>
 </html>
+
