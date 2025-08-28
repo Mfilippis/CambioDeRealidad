@@ -31,7 +31,25 @@ function initTicker(){
   requestAnimationFrame(step);
 }
 
-// --- Formulario (ahora permite historias o recomendaciones) ---
+/* -------- MENÚ MÓVIL -------- */
+function initMobileNav(){
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if(!btn || !nav || btn.dataset.bound) return;
+  btn.dataset.bound = '1';
+
+  btn.addEventListener('click', ()=>{
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  }));
+}
+
+/* ---- FORM: historias o recomendaciones ---- */
 function initStoryForm(){
   const form = document.getElementById('storyForm');
   if(!form || form.dataset.bound) return;
@@ -94,7 +112,7 @@ function initStoryForm(){
   });
 }
 
-// --- Títulos reales de YouTube vía oEmbed ---
+/* ---- Títulos reales de YouTube (oEmbed) ---- */
 async function initYouTubeTitles(){
   const cards = document.querySelectorAll('.yt-card[data-yt]');
   if(!cards.length) return;
@@ -114,9 +132,8 @@ async function initYouTubeTitles(){
   }
 }
 
-// --- Mostrar solo N y expandir con "Ver más" ---
+/* ---- Mostrar N y expandir con “Ver más” ---- */
 function initCollapsers(){
-  // para cada grid con data-limit
   document.querySelectorAll('[data-limit]').forEach(box=>{
     const limit = parseInt(box.dataset.limit || '6', 10);
     const items = Array.from(box.children);
@@ -124,7 +141,6 @@ function initCollapsers(){
 
     items.slice(limit).forEach(el => el.classList.add('is-hidden'));
 
-    // botón "Ver más" asociado (lo busco cerca)
     let btn = box.parentElement.querySelector('.btn-more');
     if(!btn){
       btn = document.createElement('button');
@@ -153,6 +169,7 @@ function initCollapsers(){
   });
 }
 
+/* ---- Render de rutas ---- */
 async function render(){
   let view = (location.hash || '#/inicio').replace('#/','');
   if(!routes[view]) view = 'inicio';
@@ -160,8 +177,7 @@ async function render(){
   try{
     const res = await fetch(routes[view], { cache: 'no-cache' });
     const html = await res.text();
-    const app = document.getElementById('app');
-    app.innerHTML = html;
+    document.getElementById('app').innerHTML = html;
   }catch(e){
     document.getElementById('app').innerHTML = '<section class="container"><p>Ups, no pude cargar esta sección.</p></section>';
   }
@@ -177,7 +193,9 @@ async function render(){
   if(y) y.textContent = new Date().getFullYear();
 }
 
+/* ---- Init ---- */
 window.addEventListener('hashchange', render);
-window.addEventListener('DOMContentLoaded', render);
+window.addEventListener('DOMContentLoaded', () => { initMobileNav(); render(); });
+
 
 
