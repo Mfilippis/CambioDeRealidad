@@ -157,7 +157,67 @@ async function initYouTubeTitles(){
 function initCollapsers(){
   document.querySelectorAll('[data-limit]').forEach(box=>{
     const limit = parseInt(box.dataset.limit || '6', 10);
-    const items = Array.from(box.ch
+    const items = Array.from(box.children);
+    if(items.length <= limit) return;
+
+    items.slice(limit).forEach(el => el.classList.add('is-hidden'));
+
+    let btn = box.parentElement.querySelector('.btn-more');
+    if(!btn){
+      btn = document.createElement('button');
+      btn.className = 'btn btn-outline btn-more';
+      btn.type = 'button';
+      btn.textContent = 'Ver más';
+      const holder = document.createElement('div');
+      holder.className = 'section-actions';
+      holder.appendChild(btn);
+      box.parentElement.appendChild(holder);
+    }
+    btn.style.display = 'inline-flex';
+
+    let expanded = false;
+    btn.addEventListener('click', ()=>{
+      expanded = !expanded;
+      if(expanded){
+        items.slice(limit).forEach(el => el.classList.remove('is-hidden'));
+        btn.textContent = 'Ver menos';
+      }else{
+        items.slice(limit).forEach(el => el.classList.add('is-hidden'));
+        btn.textContent = 'Ver más';
+        window.scrollBy({ top: -40, behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+/* ---- Render de rutas ---- */
+async function render(){
+  let view = (location.hash || '#/inicio').replace('#/','');
+  if(!routes[view]) view = 'inicio';
+
+  try{
+    const res = await fetch(routes[view], { cache: 'no-cache' });
+    const html = await res.text();
+    document.getElementById('app').innerHTML = html;
+  }catch(e){
+    document.getElementById('app').innerHTML = '<section class="container"><p>Ups, no pude cargar esta sección.</p></section>';
+  }
+
+  setActive(view);
+  window.scrollTo(0,0);
+
+  if(view === 'inicio') initTicker();
+  if(view === 'conta-tu-historia') initStoryForm();
+  if(view === 'recursos'){ initYouTubeTitles(); initCollapsers(); }
+
+  const y = document.getElementById('year');
+  if(y) y.textContent = new Date().getFullYear();
+}
+
+/* ---- Init ---- */
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', () => { initMobileNav(); render(); });
+
 
 
 
