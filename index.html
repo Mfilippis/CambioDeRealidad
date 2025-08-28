@@ -16,20 +16,23 @@
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <div class="brand">
-        <img class="brand-logo" src="assets/logo.png" alt="Tu Nueva Narrativa logo" />
-        <a href="#/inicio" style="text-decoration:none; color:var(--text); font-weight:700;">TuNuevaNarrativa</a>
-      </div>
-      <nav aria-label="Principal">
-        <a href="#/inicio">Inicio</a>
-        <a href="#/quienes-somos">Quiénes somos</a>
-        <a href="#/historias">Historias</a>
-        <a href="#/recursos">Recursos</a>
-        <a class="btn btn-outline" href="#/conta-tu-historia" aria-label="Ir al formulario">Contá tu historia</a>
-      </nav>
+  <div class="container nav">
+    <div class="brand">
+      <img class="brand-logo" src="assets/logo.png" alt="Tu Nueva Narrativa logo" />
+      <a href="#/inicio" style="text-decoration:none; color:var(--text); font-weight:700;">TuNuevaNarrativa</a>
     </div>
-  </header>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">☰</button>
+
+    <nav id="site-nav" aria-label="Principal">
+      <a href="#/inicio">Inicio</a>
+      <a href="#/quienes-somos">Quiénes somos</a>
+      <a href="#/historias">Historias</a>
+      <a href="#/recursos">Recursos</a>
+      <a class="btn btn-outline" href="#/conta-tu-historia" aria-label="Ir al formulario">Contá tu historia</a>
+    </nav>
+  </div>
+</header>
 
   <main id="app" role="main">
     <!-- El contenido de cada sección se carga aquí con JS -->
