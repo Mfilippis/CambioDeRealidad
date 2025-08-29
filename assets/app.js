@@ -62,6 +62,16 @@ function initStoryForm(){
   const form = document.getElementById('storyForm');
   if(!form || form.dataset.bound) return;
   form.dataset.bound = '1';
+  const ta = form.querySelector('#historia');
+if (ta){
+  const autoGrow = () => {
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight, 600) + 'px'; // hasta 600px
+  };
+  ta.addEventListener('input', autoGrow);
+  autoGrow(); // set inicial
+}
+
 
   const ok  = document.getElementById('msgOk');
   const err = document.getElementById('msgErr');
