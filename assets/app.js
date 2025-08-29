@@ -62,15 +62,30 @@ function initStoryForm(){
   const form = document.getElementById('storyForm');
   if(!form || form.dataset.bound) return;
   form.dataset.bound = '1';
-  const ta = form.querySelector('#historia');
+// Auto-expansión 2→6 filas con scroll al llegar al tope
+const ta = form.querySelector('#historia');
 if (ta){
-  const autoGrow = () => {
+  const minRows = 2;
+  // Si querés otro tope en móvil, descomentá la línea de abajo:
+  // const maxRows = window.matchMedia('(max-width:540px)').matches ? 5 : 6;
+  const maxRows = 6;
+
+  const border = ta.offsetHeight - ta.clientHeight;         // bordes
+  const lineH  = parseFloat(getComputedStyle(ta).lineHeight) || 20;
+
+  const fit = () => {
+    ta.rows = minRows;              // reset base para medir
     ta.style.height = 'auto';
-    ta.style.height = Math.min(ta.scrollHeight, 600) + 'px'; // hasta 600px
+    const maxH = lineH * maxRows + border;
+    const newH = Math.min(ta.scrollHeight, maxH);
+    ta.style.height   = newH + 'px';
+    ta.style.overflowY = (ta.scrollHeight > maxH) ? 'auto' : 'hidden';
   };
-  ta.addEventListener('input', autoGrow);
-  autoGrow(); // set inicial
+
+  ta.addEventListener('input', fit);
+  fit(); // set inicial
 }
+
 
 
   const ok  = document.getElementById('msgOk');
