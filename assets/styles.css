@@ -138,3 +138,18 @@ footer .container{ display:flex; justify-content:space-between; align-items:cent
 
 .is-hidden{ display:none !important; }
 .section-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+
+/* Textarea más grande y cómodo */
+#storyForm textarea{
+  width: 100%;
+  min-height: 240px;   /* altura mínima */
+  line-height: 1.5;
+  font-size: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  resize: vertical;    /* que el usuario pueda estirarlo */
+}
+@media (max-width: 540px){
+  #storyForm textarea{ min-height: 200px; }
+}
+
