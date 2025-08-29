@@ -25,13 +25,11 @@ body{
   color:var(--text);
   background: radial-gradient(1200px 600px at 20% -10%, #10183a 0%, #0b0f1a 55%) no-repeat fixed,
               var(--bg);
+  color-scheme: dark; /* ayuda a que los controles nativos usen tema oscuro */
 }
 
 /* ---- Helpers ---- */
-.container{
-  width: min(1200px, calc(100% - 32px));
-  margin-inline:auto;
-}
+.container{ width: min(1200px, calc(100% - 32px)); margin-inline:auto; }
 .is-hidden{ display:none !important; }
 .section-actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
 
@@ -42,10 +40,7 @@ header{
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
-header .nav{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px; padding:12px 0;
-}
+header .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; }
 .brand{ display:flex; align-items:center; gap:10px; }
 .brand-logo{ width:28px; height:28px; border-radius:8px; object-fit:cover; }
 
@@ -67,10 +62,7 @@ nav a.active{ background:rgba(124,137,255,.16); outline:1px solid rgba(124,137,2
   padding:10px 14px; border-radius:12px; font-weight:700;
   border:1px solid transparent; cursor:pointer; text-decoration:none; color:var(--text);
 }
-.btn-outline{
-  background:rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.14);
-}
+.btn-outline{ background:rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); }
 .btn-outline:hover{ background:rgba(255,255,255,.10); }
 .btn-primary{
   background: linear-gradient(135deg, var(--primary) 0%, #6dd5fa 100%);
@@ -126,7 +118,7 @@ nav a.active{ background:rgba(124,137,255,.16); outline:1px solid rgba(124,137,2
 .book-body{ padding:12px 14px; }
 .book-title{ margin:0; font-weight:600; color:var(--text); font-size:15px; }
 
-/* ---- Forms ---- */
+/* ---- Forms (inputs y SELECT oscuro) ---- */
 form label{ display:block; margin:10px 0 6px; font-weight:700; }
 form input, form select, form textarea{
   width:100%; color:var(--text);
@@ -134,28 +126,32 @@ form input, form select, form textarea{
   border-radius:14px; padding:10px 12px; outline:none;
 }
 form input::placeholder, form textarea::placeholder{ color:#9aa3b5; }
-form input:focus, form select:focus, form textarea:focus{ border-color: rgba(124,137,255,.6); box-shadow:0 0 0 3px rgba(124,137,255,.15); }
+form input:focus, form select:focus, form textarea:focus{
+  border-color: rgba(124,137,255,.6); box-shadow:0 0 0 3px rgba(124,137,255,.15);
+}
 .hint{ color:var(--muted); font-size:13px; }
 
-/* ---- Contá tu historia: layout + textarea grande ---- */
-.conta-grid{
-  display:grid; grid-template-columns: 1fr; gap:24px;  /* 1 columna: el form ocupa todo */
-}
-/* Textarea auto-ajustable con 2–6 filas */
+/* Select desplegado (opciones) en oscuro */
+select, option{ background-color: var(--panel); color: var(--text); }
+option:checked{ background-color: rgba(124,137,255,.25); }
+
+/* ---- Contá tu historia: layout + textarea auto 2→6 filas ---- */
+.conta-grid{ display:grid; grid-template-columns: 1fr; gap:24px; }
+
+/* El JS maneja la altura (2→6); sin min-height; scroll al tope; no permitir estirar a mano */
 #storyForm textarea{
   width:100%;
   line-height:1.5;
   font-size:16px;
   padding:12px 14px;
   border-radius:14px;
-  height:auto;         /* que el JS maneje la altura */
-  min-height:0;        /* anulamos cualquier mínimo previo */
-  overflow-y:hidden;   /* sin scroll hasta llegar al tope */
-  resize:none;         /* evitamos que lo estiren a mano */
+  height:auto;
+  min-height:0;
+  overflow-y:hidden;   /* sin scroll hasta el tope */
+  resize:none;         /* no permitir estirar manualmente */
 }
-.msg-ok, .msg-err{
-  display:none; margin-top:12px; font-weight:600;
-}
+
+.msg-ok, .msg-err{ display:none; margin-top:12px; font-weight:600; }
 .msg-ok{ color:#9ef2b1; }
 .msg-err{ color:#ffb3b3; }
 
@@ -173,6 +169,5 @@ footer{ margin-top:40px; padding:26px 0; color:var(--muted); border-top:1px soli
 @media (max-width: 540px){
   .yt-card{ grid-column: span 12; }
   .book-card{ grid-column: span 12; }
-  #storyForm textarea{ min-height:180px; }
 }
 
