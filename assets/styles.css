@@ -141,13 +141,17 @@ form input:focus, form select:focus, form textarea:focus{ border-color: rgba(124
 .conta-grid{
   display:grid; grid-template-columns: 1fr; gap:24px;  /* 1 columna: el form ocupa todo */
 }
+/* Textarea auto-ajustable con 2–6 filas */
 #storyForm textarea{
-  min-height: 220px;      /* alto cómodo por defecto */
-  line-height: 1.5;
-  font-size: 16px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  resize: vertical;       /* el usuario puede agrandarlo */
+  width:100%;
+  line-height:1.5;
+  font-size:16px;
+  padding:12px 14px;
+  border-radius:14px;
+  height:auto;         /* que el JS maneje la altura */
+  min-height:0;        /* anulamos cualquier mínimo previo */
+  overflow-y:hidden;   /* sin scroll hasta llegar al tope */
+  resize:none;         /* evitamos que lo estiren a mano */
 }
 .msg-ok, .msg-err{
   display:none; margin-top:12px; font-weight:600;
