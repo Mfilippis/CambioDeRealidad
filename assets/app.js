@@ -1,4 +1,4 @@
-// ==== TuNuevaNarrativa – assets/app.js ====
+// ==== TuNuevaNarrativa – assets/app.js v6 ====
 
 // Rutas (partials)
 const routes = {
@@ -53,46 +53,48 @@ function initMobileNav(){
 }
 
 /* ---- FORM: historias o recomendaciones ----
-   - SIN mínimo de caracteres
-   - Muestra "Enviando…" y luego "¡Enviado!"
-   - Guarda backup local
-   - Envía a Formspree con FormData
+   - Sin mínimo de caracteres
+   - Mensajes "Enviando…" y "¡Enviado!"
+   - Backup local
+   - Envío a Formspree con FormData
+   - Textarea auto 2→6 filas con scroll al tope
 */
 function initStoryForm(){
   const form = document.getElementById('storyForm');
   if(!form || form.dataset.bound) return;
   form.dataset.bound = '1';
-// Auto-expansión 2→6 filas con scroll al llegar al tope
-const ta = form.querySelector('#historia');
-if (ta){
-  const minRows = 2;
-  // Si querés otro tope en móvil, descomentá la línea de abajo:
-  // const maxRows = window.matchMedia('(max-width:540px)').matches ? 5 : 6;
-  const maxRows = 6;
-
-  const border = ta.offsetHeight - ta.clientHeight;         // bordes
-  const lineH  = parseFloat(getComputedStyle(ta).lineHeight) || 20;
-
-  const fit = () => {
-    ta.rows = minRows;              // reset base para medir
-    ta.style.height = 'auto';
-    const maxH = lineH * maxRows + border;
-    const newH = Math.min(ta.scrollHeight, maxH);
-    ta.style.height   = newH + 'px';
-    ta.style.overflowY = (ta.scrollHeight > maxH) ? 'auto' : 'hidden';
-  };
-
-  ta.addEventListener('input', fit);
-  fit(); // set inicial
-}
-
-
 
   const ok  = document.getElementById('msgOk');
   const err = document.getElementById('msgErr');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // helpers UI
+  // --- Textarea auto 2→6 filas con scroll al tope ---
+  const ta = form.querySelector('#historia');
+  if (ta){
+    const minRows = 2;
+    // Tope distinto en móvil (opcional): descomentar si querés 5 en móvil
+    // const maxRows = window.matchMedia('(max-width:540px)').matches ? 5 : 6;
+    const maxRows = 6;
+
+    const getLineH = () => parseFloat(getComputedStyle(ta).lineHeight) || 20;
+    const border   = () => (ta.offsetHeight - ta.clientHeight);
+
+    const fit = () => {
+      const lh = getLineH();
+      const maxH = lh * maxRows + border();
+      ta.rows = minRows;
+      ta.style.height = 'auto';
+      const newH = Math.min(ta.scrollHeight, maxH);
+      ta.style.height   = newH + 'px';
+      ta.style.overflowY = (ta.scrollHeight > maxH) ? 'auto' : 'hidden';
+    };
+
+    ta.addEventListener('input', fit);
+    window.addEventListener('resize', fit, { passive:true });
+    fit();
+  }
+
+  // helpers UI envío
   const setSending = (sending) => {
     if(!submitBtn) return;
     submitBtn.disabled = sending;
@@ -105,15 +107,15 @@ if (ta){
     if(err) { err.style.display = 'none'; }
     if(ok)  { ok.style.display  = 'none'; }
 
-    // Backup local (sin validación de mínimo)
+    // Backup local
     try{
       const data = Object.fromEntries(new FormData(form).entries());
       const historias = JSON.parse(localStorage.getItem('tnn_historias') || '[]');
       historias.push({ ...data, fecha: new Date().toISOString() });
       localStorage.setItem('tnn_historias', JSON.stringify(historias));
-    }catch(_){ /* ignorar */ }
+    }catch(_){}
 
-    // Envío a Formspree (si hay endpoint)
+    // Envío a Formspree
     const endpoint = form.dataset.endpoint;
     if(endpoint){
       const fd = new FormData(form);
@@ -123,17 +125,16 @@ if (ta){
         setSending(true);
         const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' }, // NO seteamos Content-Type con FormData
+          headers: { 'Accept': 'application/json' }, // NO setear Content-Type con FormData
           body: fd
         });
         setSending(false);
 
         if(res.ok){
-          if(ok){
-            ok.textContent = '¡Enviado! Gracias por compartir 💜';
-            ok.style.display = 'block';
-          }
+          if(ok){ ok.textContent = '¡Enviado! Gracias por compartir 💜'; ok.style.display = 'block'; }
           form.reset();
+          // re-fit textarea a 2 filas después de reset
+          if(ta){ ta.value = ''; ta.style.height = 'auto'; ta.rows = 2; ta.style.overflowY = 'hidden'; }
           return;
         }else{
           const j = await res.json().catch(()=>({}));
@@ -148,12 +149,9 @@ if (ta){
         return;
       }
     }else{
-      // Sin endpoint: igual confirmamos al usuario
-      if(ok){
-        ok.textContent = '¡Enviado! (guardado localmente) 💜';
-        ok.style.display = 'block';
-      }
+      if(ok){ ok.textContent = '¡Enviado! (guardado localmente) 💜'; ok.style.display = 'block'; }
       form.reset();
+      if(ta){ ta.value = ''; ta.style.height = 'auto'; ta.rows = 2; ta.style.overflowY = 'hidden'; }
     }
   });
 }
@@ -242,6 +240,7 @@ async function render(){
 /* ---- Init ---- */
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => { initMobileNav(); render(); });
+
 
 
 
