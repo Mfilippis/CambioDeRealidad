@@ -3,41 +3,43 @@
     <h2 class="section-title">Contá tu historia o recomendanos algo</h2>
     <p class="section-sub">Podés compartir una historia breve o recomendar una meditación, charla o libro.</p>
 
-    <div class="grid-2 conta-grid">
+    <div class="panel form-wrapper">
       <form id="storyForm" data-endpoint="https://formspree.io/f/xnnzebyn" novalidate>
-        <div>
-          <label for="nombre">Nombre</label>
-          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" />
+        <div class="grid-2-simple">
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" />
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="tu@correo.com" />
+            <div class="hint">Solo para poder responderte (opcional).</div>
+          </div>
+
+          <div>
+            <label for="tipo">¿Qué querés compartir?</label>
+            <select id="tipo" name="tipo">
+              <option>Historia</option>
+              <option>Recomendación: meditación</option>
+              <option>Recomendación: charla</option>
+              <option>Recomendación: libro</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="link">Link recomendado (opcional)</label>
+            <input id="link" name="link" type="url" placeholder="Pega el enlace de YouTube o del libro" />
+          </div>
+
+          <div class="field-full">
+            <label for="historia">Tu experiencia o explicación</label>
+            <textarea id="historia" name="historia" rows="2"
+              placeholder="Contanos tu experiencia o por qué lo recomendás…"></textarea>
+          </div>
         </div>
 
-        <div>
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="tu@correo.com" />
-          <div class="hint">Solo para poder responderte (opcional).</div>
-        </div>
-
-        <div>
-          <label for="tipo">¿Qué querés compartir?</label>
-          <select id="tipo" name="tipo">
-            <option>Historia</option>
-            <option>Recomendación: meditación</option>
-            <option>Recomendación: charla</option>
-            <option>Recomendación: libro</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="link">Link recomendado (opcional)</label>
-          <input id="link" name="link" type="url" placeholder="Pega el enlace de YouTube o del libro" />
-        </div>
-
-        <div class="field-full">
-          <label for="historia">Tu experiencia o explicación</label>
-          <textarea id="historia" name="historia" rows="2"
-            placeholder="Contanos tu experiencia o por qué lo recomendás…"></textarea>
-        </div>
-
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <div class="form-actions">
           <button class="btn btn-primary" type="submit">Enviar</button>
           <button class="btn btn-outline" type="reset">Limpiar</button>
         </div>
@@ -47,17 +49,9 @@
           Ups, no pude enviar el formulario ahora. Probá de nuevo en unos minutos.
         </div>
       </form>
-
-      <aside class="panel" style="background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-xl); padding:20px;">
-        <h3>¿Cómo funciona?</h3>
-        <ul>
-          <li>Tu historia o recomendación se envía por email y queda guardada localmente.</li>
-          <li>Podés pegar un link de YouTube o de un libro (opcional).</li>
-          <li>Solo pedimos email si querés que te contactemos.</li>
-        </ul>
-      </aside>
     </div>
   </div>
 </section>
+
 
 
