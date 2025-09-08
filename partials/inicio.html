@@ -19,13 +19,28 @@
         </div>
 
         <div class="hero-art">
+          <!--
+            1) Intenta cargar el logo en assets/
+            2) Si falla, prueba con portada.png en la raíz
+            3) Si también falla, oculta la imagen para que no quede el ícono roto
+          -->
           <img
-            src="assets/tnn_logo_yellow_bg_soft.png"
+            src="./assets/tnn_logo_yellow_bg_soft.png"
             alt="TuNuevaNarrativa"
             loading="eager"
+            onerror="
+              if (this.dataset.step === '1') {
+                this.dataset.step='2';
+                this.src='./portada.png';
+              } else {
+                this.closest('.hero-art').style.display='none';
+              }
+            "
+            data-step="1"
           />
         </div>
       </div>
     </div>
   </div>
 </section>
+
