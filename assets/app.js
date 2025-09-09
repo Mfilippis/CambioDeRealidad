@@ -1,11 +1,11 @@
-// ==== TuNuevaNarrativa – assets/app.js v7 ====
+// ==== TuNuevaNarrativa – assets/app.js v8 ====
 
 // Rutas (partials)
 const routes = {
   'inicio': 'partials/inicio.html',
   'quienes-somos': 'partials/quienes-somos.html',
   'historias': 'partials/historias.html',
-  'recursos': 'partials/recursos.html',            // ← ruta de "Inspírate"
+  'recursos': 'partials/recursos.html',            // "Inspírate"
   'conta-tu-historia': 'partials/conta-tu-historia.html'
 };
 
@@ -26,7 +26,7 @@ function setPageTitle(view){
   if (v === 'inicio')                 title = 'Inicio · TuNuevaNarrativa';
   else if (v === 'quienes-somos')     title = 'Quiénes somos · TuNuevaNarrativa';
   else if (v === 'historias')         title = 'Historias · TuNuevaNarrativa';
-  else if (v === 'recursos')          title = 'Inspírate · TuNuevaNarrativa'; // ← texto nuevo
+  else if (v === 'recursos')          title = 'Inspírate · TuNuevaNarrativa';
   else if (v === 'conta-tu-historia') title = 'Contá tu historia · TuNuevaNarrativa';
 
   document.title = title;
@@ -66,13 +66,7 @@ function initMobileNav(){
   }));
 }
 
-/* ---- FORM: historias o recomendaciones ----
-   - Sin mínimo de caracteres
-   - Mensajes "Enviando…" y "¡Enviado!"
-   - Backup local
-   - Envío a Formspree con FormData
-   - Textarea auto 2→6 filas con scroll al tope
-*/
+/* ---- FORM: historias o recomendaciones ---- */
 function initStoryForm(){
   const form = document.getElementById('storyForm');
   if(!form || form.dataset.bound) return;
@@ -86,7 +80,6 @@ function initStoryForm(){
   const ta = form.querySelector('#historia');
   if (ta){
     const minRows = 2;
-    // const maxRows = window.matchMedia('(max-width:540px)').matches ? 5 : 6;
     const maxRows = 6;
 
     const getLineH = () => parseFloat(getComputedStyle(ta).lineHeight) || 20;
@@ -107,7 +100,6 @@ function initStoryForm(){
     fit();
   }
 
-  // helpers UI envío
   const setSending = (sending) => {
     if(!submitBtn) return;
     submitBtn.disabled = sending;
@@ -138,7 +130,7 @@ function initStoryForm(){
         setSending(true);
         const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' }, // NO setear Content-Type con FormData
+          headers: { 'Accept': 'application/json' },
           body: fd
         });
         setSending(false);
@@ -146,7 +138,6 @@ function initStoryForm(){
         if(res.ok){
           if(ok){ ok.textContent = '¡Enviado! Gracias por compartir 💜'; ok.style.display = 'block'; }
           form.reset();
-          // re-fit textarea a 2 filas después de reset
           if(ta){ ta.value = ''; ta.style.height = 'auto'; ta.rows = 2; ta.style.overflowY = 'hidden'; }
           return;
         }else{
@@ -187,6 +178,49 @@ async function initYouTubeTitles(){
       titleEl.textContent = 'Ver en YouTube';
     }
   }
+}
+
+/* ---- Filtros + buscador + acordeón (Historias) ---- */
+function initStories(){
+  const list = document.querySelector('.stories-list');
+  if(!list || list.dataset.bound) return;
+  list.dataset.bound = '1';
+
+  const stories = Array.from(list.querySelectorAll('details.story'));
+  const search  = document.getElementById('storiesSearch');
+  const chips   = document.querySelectorAll('.stories-filters .chip');
+  let activeTag = 'todas';
+  let q = '';
+
+  function apply(){
+    stories.forEach(d => {
+      const tags = (d.dataset.tags || '').split(',').map(s=>s.trim());
+      const okTag = (activeTag === 'todas') || tags.includes(activeTag);
+      const okText = !q || d.textContent.toLowerCase().includes(q);
+      d.style.display = (okTag && okText) ? '' : 'none';
+    });
+  }
+
+  chips.forEach(btn => btn.addEventListener('click', ()=>{
+    chips.forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    activeTag = btn.dataset.tag;
+    apply();
+  }));
+
+  if(search){
+    search.addEventListener('input', ()=>{
+      q = search.value.trim().toLowerCase();
+      apply();
+    });
+  }
+
+  // Solo uno abierto a la vez (acordeón)
+  stories.forEach(d => d.addEventListener('toggle', ()=>{
+    if(d.open){
+      stories.forEach(o => { if(o!==d) o.open = false; });
+    }
+  }));
 }
 
 /* ---- Mostrar N y expandir con “Ver más” ---- */
@@ -244,11 +278,9 @@ async function render(){
   window.scrollTo(0,0);
 
   if(view === 'inicio')            initTicker();
+  if(view === 'historias')         initStories();
+  if(view === 'recursos'){         initYouTubeTitles(); initCollapsers(); }
   if(view === 'conta-tu-historia') initStoryForm();
-  if(view === 'recursos'){         // ← acá se inicializa “Inspírate”
-    initYouTubeTitles();
-    initCollapsers();
-  }
 
   // año del footer
   const y = document.getElementById('year');
@@ -258,6 +290,7 @@ async function render(){
 /* ---- Init ---- */
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => { initMobileNav(); render(); });
+
 
 
 
