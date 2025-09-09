@@ -15,32 +15,22 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="#/conta-tu-historia">Contá tu historia</a>
             <a class="btn btn-outline" href="#/historias">Ver historias</a>
+            <!-- Nuevo botón -->
+            <a class="btn btn-outline" href="#/recursos" title="Meditaciones, charlas y libros recomendados">
+              Explorar recomendados
+            </a>
           </div>
         </div>
 
         <div class="hero-art">
-          <!--
-            1) Intenta cargar el logo en assets/
-            2) Si falla, prueba con portada.png en la raíz
-            3) Si también falla, oculta la imagen para que no quede el ícono roto
-          -->
           <img
-            src="./assets/tnn_logo_yellow_bg_soft.png"
+            src="./assets/logo.png"
             alt="TuNuevaNarrativa"
             loading="eager"
-            onerror="
-              if (this.dataset.step === '1') {
-                this.dataset.step='2';
-                this.src='./portada.png';
-              } else {
-                this.closest('.hero-art').style.display='none';
-              }
-            "
-            data-step="1"
+            onerror="this.closest('.hero-art').style.display='none';"
           />
         </div>
       </div>
     </div>
   </div>
 </section>
-
