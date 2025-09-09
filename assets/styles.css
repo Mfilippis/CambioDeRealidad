@@ -218,3 +218,33 @@ footer{ margin-top:40px; padding:26px 0; color:var(--muted); border-top:1px soli
   .book-card{ grid-column: span 12; }
 }
 
+/* ===== Historias (acordeón + filtros) ===== */
+.stories-filters { display:grid; gap:12px; margin-bottom:16px; }
+.stories-filters .chips { display:flex; flex-wrap:wrap; gap:8px; }
+.stories-filters .chip.active { background:var(--accent-600); color:#fff; }
+
+.stories-list { display:flex; flex-direction:column; gap:14px; }
+
+.story {
+  border-radius:16px; background:var(--surface-2);
+  box-shadow: var(--shadow-1);
+  overflow:hidden; border:1px solid var(--surface-3);
+}
+.story-summary { list-style:none; cursor:pointer; padding:16px 18px; }
+.story[open] .story-summary { background:var(--surface-3); }
+.story-summary h3 { margin:0 0 6px 0; font-size:1.15rem; }
+.story-summary .tldr { margin:0 0 6px 0; opacity:.9; }
+.story-summary .meta { display:flex; gap:12px; font-size:.9rem; opacity:.8; }
+.story-summary .meta .tags{ opacity:.9; }
+
+.story-body { padding:16px 18px 20px; display:grid; gap:10px; }
+.story-body h4 { margin:8px 0 2px; font-size:1rem; }
+.story-body ul { margin:0 0 6px 1rem; }
+.story-body ul.inline { display:flex; flex-wrap:wrap; gap:10px; margin:0; }
+.story-body ul.inline li { list-style:none; padding:6px 10px; border:1px solid var(--surface-4); border-radius:999px; }
+.story .cta { margin-top:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+@media (max-width: 540px){
+  .story-summary h3{ font-size:1.05rem; }
+  .story-summary .meta{ flex-wrap:wrap; gap:8px; }
+}
