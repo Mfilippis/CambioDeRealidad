@@ -1,11 +1,11 @@
-// ==== TuNuevaNarrativa – assets/app.js v6 ====
+// ==== TuNuevaNarrativa – assets/app.js v7 ====
 
 // Rutas (partials)
 const routes = {
   'inicio': 'partials/inicio.html',
   'quienes-somos': 'partials/quienes-somos.html',
   'historias': 'partials/historias.html',
-  'recursos': 'partials/recursos.html',
+  'recursos': 'partials/recursos.html',            // ← ruta de "Inspírate"
   'conta-tu-historia': 'partials/conta-tu-historia.html'
 };
 
@@ -16,6 +16,20 @@ function setActive(view){
     a.classList.toggle('active', active);
     if(active){ a.setAttribute('aria-current','page'); } else { a.removeAttribute('aria-current'); }
   });
+}
+
+// Actualiza el título de la pestaña según la vista
+function setPageTitle(view){
+  const v = view || (location.hash || '#/inicio').replace('#/','');
+  let title = 'TuNuevaNarrativa';
+
+  if (v === 'inicio')                 title = 'Inicio · TuNuevaNarrativa';
+  else if (v === 'quienes-somos')     title = 'Quiénes somos · TuNuevaNarrativa';
+  else if (v === 'historias')         title = 'Historias · TuNuevaNarrativa';
+  else if (v === 'recursos')          title = 'Inspírate · TuNuevaNarrativa'; // ← texto nuevo
+  else if (v === 'conta-tu-historia') title = 'Contá tu historia · TuNuevaNarrativa';
+
+  document.title = title;
 }
 
 // Animación ticker (inicio)
@@ -72,7 +86,6 @@ function initStoryForm(){
   const ta = form.querySelector('#historia');
   if (ta){
     const minRows = 2;
-    // Tope distinto en móvil (opcional): descomentar si querés 5 en móvil
     // const maxRows = window.matchMedia('(max-width:540px)').matches ? 5 : 6;
     const maxRows = 6;
 
@@ -85,7 +98,7 @@ function initStoryForm(){
       ta.rows = minRows;
       ta.style.height = 'auto';
       const newH = Math.min(ta.scrollHeight, maxH);
-      ta.style.height   = newH + 'px';
+      ta.style.height    = newH + 'px';
       ta.style.overflowY = (ta.scrollHeight > maxH) ? 'auto' : 'hidden';
     };
 
@@ -227,12 +240,17 @@ async function render(){
   }
 
   setActive(view);
+  setPageTitle(view);
   window.scrollTo(0,0);
 
-  if(view === 'inicio') initTicker();
+  if(view === 'inicio')            initTicker();
   if(view === 'conta-tu-historia') initStoryForm();
-  if(view === 'recursos'){ initYouTubeTitles(); initCollapsers(); }
+  if(view === 'recursos'){         // ← acá se inicializa “Inspírate”
+    initYouTubeTitles();
+    initCollapsers();
+  }
 
+  // año del footer
   const y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 }
