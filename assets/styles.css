@@ -339,6 +339,133 @@ footer{ margin-top:40px; padding:26px 0; color:var(--muted); border-top:1px soli
   .swap-badge{ position:static; margin:0 0 8px; }
 }
 
+/* ==== TNN · Overrides historias (cards/plegables) ======================= */
+:root{
+  --panel-bg: rgba(255,255,255,0.035);
+  --card-bg:  rgba(255,255,255,0.045);
+  --card-bg-2:rgba(255,255,255,0.07);
+  --border-1: rgba(255,255,255,0.10);
+  --border-2: rgba(255,255,255,0.18);
+  --shadow-1: 0 6px 18px rgba(0,0,0,.35);
+  --shadow-2: inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* Paneles (buscador + razones) */
+.panel{
+  background: var(--panel-bg);
+  border: 1px solid var(--border-1);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow-1);
+}
+.panel-tight{ padding: 16px; }
+
+/* Lista de historias: columnas verticales con gap */
+.stories-list{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+/* Card visible y más clara */
+.card{
+  background:
+    linear-gradient(180deg, var(--card-bg-2) 0%, var(--card-bg) 100%);
+  border: 1px solid var(--border-2);
+  border-radius: 16px;
+  box-shadow: var(--shadow-1), var(--shadow-2);
+  overflow: hidden;
+}
+
+/* Resumen clickeable + chevrón */
+.story-summary{
+  display: block;
+  padding: 18px 20px 16px 20px;
+  cursor: pointer;
+  position: relative;
+}
+.story-summary::-webkit-details-marker{ display: none; }
+details.story .story-summary::after{
+  content: "▾";
+  position: absolute;
+  right: 18px; top: 20px;
+  opacity: .75; font-size: 18px;
+  transition: transform .18s ease;
+}
+details.story[open] .story-summary::after{
+  transform: rotate(180deg);
+}
+
+/* TL;DR / meta */
+.story-title{ margin: 2px 0 8px 0; }
+.tldr{ margin: 0 0 10px 0; opacity: .92; }
+.meta{ display:flex; gap:14px; opacity:.8; font-size:.95rem; }
+
+/* Cuerpo de historia */
+.story-body{
+  padding: 16px 20px 20px 20px;
+  border-top: 1px solid var(--border-1);
+  background: rgba(255,255,255,0.03);
+}
+.story-body h4{ margin: 14px 0 6px 0; }
+.story-body .pullquote{
+  margin: 4px 0 10px 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--border-2);
+  background: rgba(255,255,255,0.035);
+  border-radius: 8px;
+  font-style: italic;
+}
+
+/* Badge (de → a) a la derecha en desktop */
+.swap-badge{
+  position: absolute;
+  right: 46px; top: 18px;
+  font-size: .92rem;
+  color: #bcd;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-1);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+@media (max-width: 720px){
+  .swap-badge{
+    position: static;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+/* Chips activos del filtro */
+.stories-filters .chips{
+  display: flex; flex-wrap: wrap;
+  gap: 10px; margin-top: 12px;
+}
+.stories-filters .chip{
+  border: 1px solid var(--border-1);
+  background: rgba(255,255,255,.03);
+  padding: 6px 12px; border-radius: 999px;
+}
+.stories-filters .chip.active{
+  border-color: var(--border-2);
+  background: rgba(255,255,255,.09);
+}
+
+/* Input grande del buscador */
+.input.input-lg{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-1);
+  background: rgba(255,255,255,.04);
+}
+
+/* Espaciado fino entre bloques de la cabecera de historias */
+.section-sub{ margin-bottom: 14px; }
+
+/* Fin overrides ========================================================= */
+
 
 @media (max-width:540px){
   .story-summary h3{ font-size:1.05rem; }
