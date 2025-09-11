@@ -249,29 +249,45 @@ footer{ margin-top:40px; padding:26px 0; color:var(--muted); border-top:1px soli
   .story-summary .meta{ flex-wrap:wrap; gap:8px; }
 }
 
-/* ===== Historias – cards, badges y callouts ===== */
-.word-power.panel{
-  margin: 10px 0 18px; padding: 16px 18px;
-  border-radius: 16px; background: var(--surface-2);
+/* ====== Panels genéricos ====== */
+.panel{
+  background: var(--surface-2);
   border: 1px solid var(--surface-3);
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin: 12px 0 16px;
 }
-.word-power .lead{ margin: 6px 0 8px; font-weight: 500; }
-.word-power .bullets{ margin: 8px 0; padding-left: 18px; }
-.word-power .micro{ opacity: .85; font-style: italic; }
+.panel-tight{ padding: 14px; }
 
-.stories-filters { display:grid; gap:12px; margin:18px 0; }
-.stories-filters .chips { display:flex; flex-wrap:wrap; gap:8px; }
-.stories-filters .chip.active { background:var(--accent-600); color:#fff; }
+/* Inputs */
+.input{
+  width: 100%;
+  background: var(--surface-1);
+  border: 1px solid var(--surface-4);
+  color: var(--text-1);
+  padding: 10px 12px;
+  border-radius: 10px;
+}
 
-.stories-list { display:flex; flex-direction:column; gap:14px; }
+/* Chips */
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.chip{ padding:6px 10px; border-radius:999px; border:1px solid var(--surface-4); background:var(--surface-1); }
+.chip.active{ background: var(--accent-600); color: #fff; }
 
-/* Card */
+/* Word power */
+.word-power .lead{ margin:6px 0 8px; font-weight:500; }
+.word-power .bullets{ margin:8px 0; padding-left:18px; }
+.word-power .micro{ opacity:.85; font-style:italic; }
+
+/* Lista de historias = cards con separación */
+.stories-list{ display:flex; flex-direction:column; gap:18px; }
+
+/* Card de historia */
 .story.card{
   border-radius:16px; background:var(--surface-2);
   border:1px solid var(--surface-3);
   box-shadow: var(--shadow-1);
-  overflow:hidden;
-  transition: transform .15s ease, box-shadow .15s ease;
+  overflow:hidden; transition: transform .15s, box-shadow .15s;
 }
 .story.card:hover{ transform: translateY(-1px); box-shadow: var(--shadow-2); }
 
@@ -317,6 +333,12 @@ footer{ margin-top:40px; padding:26px 0; color:var(--muted); border-top:1px soli
 
 /* CTA */
 .story .cta{ margin-top:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+@media (max-width:540px){
+  .story-summary h3{ font-size:1.05rem; }
+  .swap-badge{ position:static; margin:0 0 8px; }
+}
+
 
 @media (max-width:540px){
   .story-summary h3{ font-size:1.05rem; }
