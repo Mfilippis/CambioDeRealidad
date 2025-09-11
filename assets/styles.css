@@ -248,3 +248,77 @@ footer{ margin-top:40px; padding:26px 0; color:var(--muted); border-top:1px soli
   .story-summary h3{ font-size:1.05rem; }
   .story-summary .meta{ flex-wrap:wrap; gap:8px; }
 }
+
+/* ===== Historias – cards, badges y callouts ===== */
+.word-power.panel{
+  margin: 10px 0 18px; padding: 16px 18px;
+  border-radius: 16px; background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+}
+.word-power .lead{ margin: 6px 0 8px; font-weight: 500; }
+.word-power .bullets{ margin: 8px 0; padding-left: 18px; }
+.word-power .micro{ opacity: .85; font-style: italic; }
+
+.stories-filters { display:grid; gap:12px; margin:18px 0; }
+.stories-filters .chips { display:flex; flex-wrap:wrap; gap:8px; }
+.stories-filters .chip.active { background:var(--accent-600); color:#fff; }
+
+.stories-list { display:flex; flex-direction:column; gap:14px; }
+
+/* Card */
+.story.card{
+  border-radius:16px; background:var(--surface-2);
+  border:1px solid var(--surface-3);
+  box-shadow: var(--shadow-1);
+  overflow:hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.story.card:hover{ transform: translateY(-1px); box-shadow: var(--shadow-2); }
+
+.story-summary{ list-style:none; cursor:pointer; padding:16px 18px; position:relative; }
+.story[open] .story-summary{ background:var(--surface-3); }
+.story-summary h3{ margin:0 0 6px; font-size:1.15rem; }
+.story-summary .muted{ opacity:.75; font-weight:400; }
+.story-summary .tldr{ margin:0 6px 6px 0; opacity:.95; }
+.story-summary .meta{ display:flex; gap:12px; font-size:.9rem; opacity:.85; }
+.story-summary .meta .tags{ opacity:.9; }
+
+/* “de → a” badge */
+.swap-badge{
+  position:absolute; top:12px; right:12px;
+  background: linear-gradient(90deg, rgba(95,224,173,.15), rgba(95,224,173,.05));
+  border:1px solid rgba(95,224,173,.35);
+  color: var(--text-1); font-size:.85rem;
+  padding:4px 8px; border-radius:999px;
+}
+.swap-badge span{ opacity:.75; }
+
+/* Body */
+.story-body{ padding:16px 18px 20px; display:grid; gap:10px; }
+.story-body h4{ margin:8px 0 2px; font-size:1rem; }
+.story-body ul{ margin:0 0 6px 1rem; }
+.story-body ul.inline{ display:flex; flex-wrap:wrap; gap:8px; margin:0; }
+.story-body ul.inline li{
+  list-style:none; padding:6px 10px; border:1px solid var(--surface-4);
+  border-radius:999px; background: var(--surface-1);
+}
+.pullquote{
+  margin:2px 0 6px; padding:10px 12px; font-weight:600; font-style:italic;
+  border-left:4px solid var(--accent-600); background: var(--surface-1);
+  border-radius:8px;
+}
+
+/* Stats pills */
+.stats{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 6px; padding-left:0; }
+.stats li{
+  list-style:none; padding:6px 10px; border-radius:10px;
+  background: rgba(95,224,173,.08); border:1px solid rgba(95,224,173,.3);
+}
+
+/* CTA */
+.story .cta{ margin-top:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+@media (max-width:540px){
+  .story-summary h3{ font-size:1.05rem; }
+  .swap-badge{ position:static; margin:0 0 8px; }
+}
