@@ -1,26 +1,16 @@
 <section id="historias">
   <div class="container">
+
     <h2 class="section-title">Historias reales de micro-cambios</h2>
     <p class="section-sub">
       Palabras pequeñas, cambios grandes. Cada historia sigue el mismo formato:
-      <strong>Antes → Quiebre → 3 acciones → Resultado → Aprendizaje → Micro-paso</strong>.
+      <strong>Antes → Quiebre → 3 acciones → Resultado → Aprendizaje → Micro-paso.</strong>
     </p>
 
-    <!-- Por qué insistimos con las palabras -->
-    <div class="word-power panel">
-      <h3>¿Por qué insistimos con las palabras?</h3>
-      <p class="lead">Porque <strong>las palabras no sólo describen: dirigen el cuerpo</strong>. Suben o bajan la energía con la que arrancás.</p>
-      <ul class="bullets">
-        <li><strong>“Tengo que”</strong> baja la barrera de entrada. <em>“Elijo”</em> sube agencia.</li>
-        <li><strong>“Qué paja”</strong> anestesia. <em>“Estoy cansada / ansiosa / saturada”</em> te muestra qué hacer.</li>
-        <li><strong>“No me alcanza el tiempo”</strong> paraliza. <em>“Hoy priorizo 15′”</em> te da un paso concreto.</li>
-      </ul>
-      <p class="micro">Elegimos palabras que nos expanden: de <em>“tengo que”</em> a <em>“elijo”</em>.</p>
-    </div>
-
-    <!-- Filtros -->
-    <div class="stories-filters panel">
-      <input id="storiesSearch" class="input" type="search" placeholder="Buscar por texto… (ej: ansiedad, tiempo, hábitos)">
+    <!-- Filtros: BUSCADOR + CHIPS (AHORA ARRIBA) -->
+    <div class="panel panel-tight stories-filters">
+      <input id="storiesSearch" class="input input-lg" type="search"
+             placeholder="Buscar por texto… (ej: ansiedad, tiempo, hábitos)">
       <div class="chips">
         <button class="chip active" data-tag="todas">Todas</button>
         <button class="chip" data-tag="energía">Energía</button>
@@ -31,6 +21,22 @@
       </div>
     </div>
 
+    <!-- Por qué insistimos con las palabras -->
+    <div class="panel word-power">
+      <h3>¿Por qué insistimos con las palabras?</h3>
+      <p class="lead">
+        Porque <strong>las palabras no sólo describen: dirigen el cuerpo</strong>.
+        Suben o bajan la energía con la que arrancás.
+      </p>
+      <ul class="bullets">
+        <li><strong>“Tengo que”</strong> baja la barrera de entrada. <em>“Elijo”</em> sube agencia.</li>
+        <li><strong>“Qué paja”</strong> anestesia. <em>“Estoy cansada / ansiosa / saturada”</em> te muestra qué hacer.</li>
+        <li><strong>“No me alcanza el tiempo”</strong> paraliza. <em>“Hoy priorizo 15′”</em> te da un paso concreto.</li>
+      </ul>
+      <p class="micro">Elegimos palabras que nos expanden: de <em>“tengo que”</em> a <em>“elijo”</em>.</p>
+    </div>
+
+    <!-- LISTA DE HISTORIAS EN CARDS -->
     <div class="stories-list">
 
       <!-- =================  HISTORIA 1  ================= -->
@@ -46,28 +52,23 @@
           <div class="pullquote">“Cuando nombro lo que realmente siento, mi cuerpo sabe qué hacer.”</div>
 
           <h4>Antes</h4>
-          <p>
-            Mañana fría. Piso de cocina, celular en la mano. Me escucho decir en automático:
-            <em>“qué paja”</em>. Lo decía para todo: supermercado, cocinar, volver a casa.
-            Tenía 32 cuando, en dos charlas distintas, mi hermana y mis amigos me lo marcaron:
-            <em>lo usás para todo</em>. Era una anestesia general.
-          </p>
+          <p>Mañana fría. Piso de cocina, celular en la mano. Me escucho decir en automático: <em>“qué paja”</em>. Lo decía para todo.</p>
 
           <h4>Quiebre</h4>
-          <p>Me propuse 30 días sin esa muletilla. Pedí ayuda amorosa (que me lo señalen con 👍) y empecé a traducir lo que sentía.</p>
+          <p>Me propuse 30 días sin esa muletilla. Pedí ayuda amorosa (👍) y empecé a traducir lo que sentía.</p>
 
           <h4>Acciones (3)</h4>
           <ul>
             <li><strong>Nombrar emociones reales:</strong> 3× al día en una nota: “cansancio / ansiedad / saturación”.</li>
-            <li><strong>Pedido de ayuda:</strong> si se escapaba “qué paja”, alguien hacía el 👍 y yo renombraba.</li>
-            <li><strong>Micro-acciones de 2′:</strong> ante la frase, “elijo empezar por 2′” (3 platos, un cajón, caminar la cuadra). Si el cuerpo pedía descanso, lo honraba.</li>
+            <li><strong>Pedido de ayuda:</strong> si se escapaba “qué paja”, alguien hacía 👍 y yo renombraba.</li>
+            <li><strong>Micro-acciones de 2′:</strong> “elijo empezar por 2′” (3 platos, un cajón, caminar la cuadra).</li>
           </ul>
 
           <h4>Resultado</h4>
           <ul class="stats">
-            <li><strong>3 meses</strong> sostenidos de gimnasio</li>
+            <li><strong>3 meses</strong> de gimnasio</li>
             <li><strong>−70%</strong> de “qué paja” en notas</li>
-            <li><strong>+energía</strong> matinal y menos postergación chica</li>
+            <li><strong>+energía</strong> matinal</li>
           </ul>
 
           <h4>Aprendizaje</h4>
@@ -82,7 +83,7 @@
 
           <h4>Recursos</h4>
           <ul class="inline">
-            <li>Respiración 4-7-8 (YouTube) para bajar</li>
+            <li>Respiración 4-7-8 (YouTube)</li>
             <li>App de notas o Streaks</li>
           </ul>
 
@@ -107,37 +108,36 @@
           <div class="pullquote">“Cuando elijo, mi cuerpo coopera. Si lo hago chiquito, arranco antes.”</div>
 
           <h4>Antes</h4>
-          <p>La lista de “tengo que” me bajaba la energía. Aunque fueran tareas simples, arrancar costaba.</p>
+          <p>La lista de “tengo que” me bajaba la energía.</p>
 
           <h4>Quiebre</h4>
-          <p>Probé transformar cada “tengo que” en <em>“elijo”</em> y agregar un recorte amable de 10′.</p>
+          <p>Transformé cada “tengo que” en <em>“elijo”</em> y agregué un recorte amable de 10′.</p>
 
           <h4>Acciones (3)</h4>
           <ul>
             <li><strong>Lenguaje:</strong> “tengo que mandar ese mail” → “<em>elijo mandar 2 mails ahora</em>”.</li>
-            <li><strong>Recorte de 10–15′:</strong> versión mínima, sin negociar.</li>
-            <li><strong>Celebración breve:</strong> anotar un emoji de check al terminar.</li>
+            <li><strong>Recorte 10–15′:</strong> versión mínima, sin negociar.</li>
+            <li><strong>Celebración breve:</strong> anotar un emoji ✔️ al terminar.</li>
           </ul>
 
           <h4>Resultado</h4>
           <ul class="stats">
-            <li><strong>−50%</strong> de tiempo de arranque</li>
+            <li><strong>−50%</strong> tiempo de arranque</li>
             <li><strong>Más días</strong> con mini-acciones completas</li>
           </ul>
 
           <h4>Aprendizaje</h4>
-          <p><strong>La palabra “elijo” sube autonomía</strong>. Con el recorte, el cuerpo se mueve.</p>
+          <p><strong>“Elijo” sube autonomía</strong>. Con el recorte, el cuerpo se mueve.</p>
 
-          <h4>Micro-paso para esta semana</h4>
+          <h4>Micro-paso</h4>
           <ul>
-            <li>Anotá 3 “tengo que” y cambialos por “elijo”.</li>
-            <li>Hacé la versión de 10′ y festejá el check.</li>
+            <li>Anotá 3 “tengo que” y cambialos por “elijo”. Hacé la versión de 10′.</li>
           </ul>
 
           <h4>Recursos</h4>
           <ul class="inline">
             <li>Timer 10′</li>
-            <li>Playlist de 2 canciones (modo arranque)</li>
+            <li>Playlist “modo arranque”</li>
           </ul>
 
           <div class="cta">
@@ -160,31 +160,29 @@
           <div class="pullquote">“El tiempo no se agranda, pero mi agencia sí.”</div>
 
           <h4>Antes</h4>
-          <p>Vivía diciendo “no me alcanza el tiempo” y postergaba lo importante por bloques grandes que nunca llegaban.</p>
+          <p>Vivía diciendo “no me alcanza el tiempo” y postergaba lo importante.</p>
 
           <h4>Quiebre</h4>
-          <p>Diseñé un <strong>mínimo no negociable</strong>: 15′ diarios para lo que pesa, a la misma hora.</p>
+          <p>Diseñé un <strong>mínimo no negociable</strong>: 15′ diarios a la misma hora.</p>
 
           <h4>Acciones (3)</h4>
           <ul>
             <li><strong>Elegir lo que pesa:</strong> 1 cosa por día.</li>
-            <li><strong>Primer hueco que entra en 15′:</strong> sin esperar “momento ideal”.</li>
+            <li><strong>Primer hueco de 15′:</strong> sin esperar “momento ideal”.</li>
             <li><strong>Regla de oro:</strong> si lo rompo, al día siguiente vuelvo sin culpa.</li>
           </ul>
 
           <h4>Resultado</h4>
           <ul class="stats">
-            <li><strong>+avance</strong> en 2 semanas que en el mes anterior</li>
+            <li><strong>+avance</strong> en 2 semanas</li>
             <li><strong>−ansiedad</strong> por “todo lo que falta”</li>
           </ul>
 
           <h4>Aprendizaje</h4>
           <p>15′ sostenidos construyen momentum. <strong>La frase nueva guía el cuerpo</strong>.</p>
 
-          <h4>Micro-paso para esta semana</h4>
-          <ul>
-            <li>Bloqueá 15′ para lo que pesa. Defendelo como una cita.</li>
-          </ul>
+          <h4>Micro-paso</h4>
+          <ul><li>Bloqueá 15′ para lo que pesa. Defendelo como una cita.</li></ul>
 
           <h4>Recursos</h4>
           <ul class="inline">
