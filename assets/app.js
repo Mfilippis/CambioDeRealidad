@@ -290,3 +290,4 @@ async function render(){
 /* ---- Init ---- */
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => { initMobileNav(); render(); });
+
