@@ -1,4 +1,4 @@
-// ==== TuNuevaNarrativa – assets/app.js v8 ====
+// ==== TuNuevaNarrativa – assets/app.js v9 ====
 
 // Rutas (partials)
 const routes = {
@@ -18,7 +18,7 @@ function setActive(view){
   });
 }
 
-// Actualiza el título de la pestaña según la vista
+// Título de la pestaña
 function setPageTitle(view){
   const v = view || (location.hash || '#/inicio').replace('#/','');
   let title = 'TuNuevaNarrativa';
@@ -215,7 +215,7 @@ function initStories(){
     });
   }
 
-  // Solo uno abierto a la vez (acordeón)
+  // Solo una historia abierta (acordeón)
   stories.forEach(d => d.addEventListener('toggle', ()=>{
     if(d.open){
       stories.forEach(o => { if(o!==d) o.open = false; });
@@ -223,7 +223,7 @@ function initStories(){
   }));
 }
 
-/* ---- Mostrar N y expandir con “Ver más” ---- */
+/* ---- Mostrar N y expandir con “Ver más” (Inspírate) ---- */
 function initCollapsers(){
   document.querySelectorAll('[data-limit]').forEach(box=>{
     const limit = parseInt(box.dataset.limit || '6', 10);
@@ -290,10 +290,3 @@ async function render(){
 /* ---- Init ---- */
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => { initMobileNav(); render(); });
-
-
-
-
-
-
-
