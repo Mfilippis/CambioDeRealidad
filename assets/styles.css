@@ -637,7 +637,7 @@ details.story .story-summary{
 
 /* Línea divisoria sólo cuando está abierto (entre resumen y cuerpo) */
 details.story[open] .story-body{
-  border-top: 1px solid rgba(255,255,255,.22);
+  border-top: 1px solid rgba(255,255,255,.05);
   background: rgba(255,255,255,.04);
 }
 
