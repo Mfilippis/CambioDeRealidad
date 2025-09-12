@@ -603,3 +603,41 @@ details.story[open] .story-summary::after{ transform: rotate(180deg); }
 .story-cta .prompt{ margin:0; opacity:.95; }
 .btn-sm{ padding: 8px 12px; font-size: .95rem; }
 /* ===================================================================== */
+
+
+/* === Historias: mismo look que la franja CTA cuando está contraída === */
+
+/* Contraída → igual al .card-soft (claro) */
+details.story:not([open]){
+  background: linear-gradient(180deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.03) 100%);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* Un pequeño “hover” para dar feedback */
+details.story:not([open]):hover{
+  border-color: rgba(255,255,255,.26);
+  transform: translateY(-1px);
+  transition: border-color .18s ease, transform .18s ease;
+}
+
+/* Abierta → mantené el look “card” (un toque más marcada) */
+details.story[open]{
+  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.05) 100%);
+  border: 1.6px solid rgba(255,255,255,.26);
+  border-radius: 18px;
+  box-shadow: 0 12px 34px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* El resumen toma el fondo transparente para que se vea el del contenedor */
+details.story .story-summary{
+  background: transparent;
+}
+
+/* Línea divisoria sólo cuando está abierto (entre resumen y cuerpo) */
+details.story[open] .story-body{
+  border-top: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.04);
+}
+
